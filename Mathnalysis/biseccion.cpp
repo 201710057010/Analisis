@@ -4,13 +4,10 @@
 
 using namespace std;
 
-double function(double x) {
-	return sin(x);
-}
 
-void biseccion(double a, double b, double tol, int niter) {
-	double y0 = function(a);
-	double y1 = function(b);
+void biseccion(double (*func)(double),double a, double b, double tol, int niter) {
+	double y0 = func(a);
+	double y1 = func(b);
 	cout << fixed;
 	cout.precision(7);
 	if (tol < 0) {
@@ -28,7 +25,7 @@ void biseccion(double a, double b, double tol, int niter) {
 	else if (y0 * y1 < 0) {
 		cout << "|  niter  |   a  |  b  |   xm  |  fxm  | error |" << endl;
 		double xm = (a + b) / 2;
-		double ym = function(xm);
+		double ym = func(xm);
 		int cont = 1;
 		double error = tol + 1;
 		cout << "|   " << cont << "   |" << a << "|" << b << "|" << xm << "|" << ym << "|" << " " << "|" << endl;
@@ -43,7 +40,7 @@ void biseccion(double a, double b, double tol, int niter) {
 			}
 			double aux = xm;
 			xm = (a + b) / 2;
-			ym = function(xm);
+			ym = func(xm);
 			cont++;
 			error = abs(xm - aux);
 			cout << "|   " << cont << "  |" << a << "|" << b << "|" << xm << "|" << ym << "|" << error << "|" << endl;

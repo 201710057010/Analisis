@@ -4,6 +4,6 @@
 cmake_minimum_required (VERSION 3.8)
 
 # Agregue un origen al ejecutable de este proyecto.
-add_executable (Mathnalysis "PuntoFijo.cpp" "PuntoFijo.h" "Mathnalysis.cpp" "Mathnalysis.h" )
+add_executable (Mathnalysis "PuntoFijo.cpp" "PuntoFijo.h" "biseccion.cpp" "busqueda_incrementa.cpp" "reglaFalsa.cpp" "Mathnalysis.cpp" "Mathnalysis.h" )
 
 # TODO: Agregue pruebas y destinos de instalación si es necesario.

@@ -4,12 +4,9 @@
 
 using namespace std;
 
-double function(double x) {
-	return sin(x);
-}
 
-void busqueda_incremental(double x0, double delta, int niter) {
-	double fx0 = function(x0);
+void busqueda_incremental(double (*func)(double),double x0, double delta, int niter) {
+	double fx0 = func(x0);
 	cout << fixed;
 	cout.precision(3);
 	if (fx0 == 0) {
@@ -19,7 +16,7 @@ void busqueda_incremental(double x0, double delta, int niter) {
 		cout << "|  i  |   x0  |  fx0  |   x1  |  fx1  | fx0 * fx1 |" << endl;
 		double x1 = x0 + delta;
 		int count = 1;
-		double fx1 = function(x1);
+		double fx1 = func(x1);
 		while (fx1 * fx0 > 0 && count < niter) {
 			string spaces = "";
 			if (count < 10)spaces += " ";
@@ -27,7 +24,7 @@ void busqueda_incremental(double x0, double delta, int niter) {
 			x0 = x1;
 			fx0 = fx1;
 			x1 = x0 + delta;
-			fx1 = function(x1);
+			fx1 = func(x1);
 			count += 1;
 		}
 		cout << "| " << count << "  | " << x0 << " | " << fx0 << " | " << x1 << " | " << fx1 << " |     " << fx0 * fx1 << " |" << endl;

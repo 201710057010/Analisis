@@ -4,16 +4,14 @@
 
 using namespace std;
 
-double function(double x) {
-	return sin(x);
-}
 
-void reglaFalsa(double a, double b, double tol, int niter) {
+void reglaFalsa(double (*func)(double),double a, double b, double tol, int niter) {
 	cout << fixed;
 	cout.precision(7);
-	double y0 = function(a);
-	double y1 = function(b);
+	double y0 = func(a);
+	double y1 = func(b);
 	if (tol < 0) {
+		cout << "tolerancia no valida";
 		cout << "tolerancia no valida";
 	}
 	else if (niter <= 0) {
@@ -28,7 +26,7 @@ void reglaFalsa(double a, double b, double tol, int niter) {
 	else if (y0 * y1 < 0) {
 
 		double xm = a - ((y0 * (b - a)) / (y1 - y0));
-		double ym = function(xm);
+		double ym = func(xm);
 		cout << "  niter        a           b          xm         fxm         error  " << endl;
 		int cont = 01;
 		double error = tol + 1;
@@ -44,7 +42,7 @@ void reglaFalsa(double a, double b, double tol, int niter) {
 			}
 			double aux = xm;
 			xm = (a + b) / 2;
-			ym = function(xm);
+			ym = func(xm);
 			cont++;
 			error = abs(xm - aux);
 			cout << cont << "        " << a << "   " << b << "   " << xm << "   " << ym << "   " << error << "   " << endl;
