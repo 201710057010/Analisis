@@ -6,3 +6,7 @@
 #include <iostream>
 
 // TODO: Haga referencia aquí a los encabezados adicionales que el programa requiere.
+
+double f(double x);
+double g(double x);
+double g2(double x);

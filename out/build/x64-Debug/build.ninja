@@ -85,6 +85,12 @@ build Mathnalysis\CMakeFiles\Mathnalysis.dir\reglaFalsa.cpp.obj: CXX_COMPILER__M
   OBJECT_FILE_DIR = Mathnalysis\CMakeFiles\Mathnalysis.dir
   TARGET_COMPILE_PDB = Mathnalysis\CMakeFiles\Mathnalysis.dir\
   TARGET_PDB = Mathnalysis\Mathnalysis.pdb
+build Mathnalysis\CMakeFiles\Mathnalysis.dir\raices_multiples.cpp.obj: CXX_COMPILER__Mathnalysis ..\..\..\Mathnalysis\raices_multiples.cpp || cmake_object_order_depends_target_Mathnalysis
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 /JMC
+  OBJECT_DIR = Mathnalysis\CMakeFiles\Mathnalysis.dir
+  OBJECT_FILE_DIR = Mathnalysis\CMakeFiles\Mathnalysis.dir
+  TARGET_COMPILE_PDB = Mathnalysis\CMakeFiles\Mathnalysis.dir\
+  TARGET_PDB = Mathnalysis\Mathnalysis.pdb
 build Mathnalysis\CMakeFiles\Mathnalysis.dir\Mathnalysis.cpp.obj: CXX_COMPILER__Mathnalysis ..\..\..\Mathnalysis\Mathnalysis.cpp || cmake_object_order_depends_target_Mathnalysis
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 /JMC
   OBJECT_DIR = Mathnalysis\CMakeFiles\Mathnalysis.dir
@@ -99,7 +105,7 @@ build Mathnalysis\CMakeFiles\Mathnalysis.dir\Mathnalysis.cpp.obj: CXX_COMPILER__
 #############################################
 # Link the executable Mathnalysis\Mathnalysis.exe
 
-build Mathnalysis\Mathnalysis.exe: CXX_EXECUTABLE_LINKER__Mathnalysis Mathnalysis\CMakeFiles\Mathnalysis.dir\PuntoFijo.cpp.obj Mathnalysis\CMakeFiles\Mathnalysis.dir\biseccion.cpp.obj Mathnalysis\CMakeFiles\Mathnalysis.dir\busqueda_incrementa.cpp.obj Mathnalysis\CMakeFiles\Mathnalysis.dir\reglaFalsa.cpp.obj Mathnalysis\CMakeFiles\Mathnalysis.dir\Mathnalysis.cpp.obj
+build Mathnalysis\Mathnalysis.exe: CXX_EXECUTABLE_LINKER__Mathnalysis Mathnalysis\CMakeFiles\Mathnalysis.dir\PuntoFijo.cpp.obj Mathnalysis\CMakeFiles\Mathnalysis.dir\biseccion.cpp.obj Mathnalysis\CMakeFiles\Mathnalysis.dir\busqueda_incrementa.cpp.obj Mathnalysis\CMakeFiles\Mathnalysis.dir\reglaFalsa.cpp.obj Mathnalysis\CMakeFiles\Mathnalysis.dir\raices_multiples.cpp.obj Mathnalysis\CMakeFiles\Mathnalysis.dir\Mathnalysis.cpp.obj
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /ZI /Ob0 /Od /RTC1 /JMC
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:console
   LINK_LIBRARIES = kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
