@@ -17,8 +17,8 @@ void newton(double (*func)(double), double (*dfunc)(double), double x0, double t
         double error = tol+1;
         cout << fixed;
         cout.precision(7);
-        cout << "|  niter  |   xn  |  fxn  |   dfxn  |  error |" << endl;
-        cout << "|   " << cont <<"   |" << x0 <<"|" << y0 << "|" << dy0  <<"|"<< "  " << "|" << endl;
+        cout << "| niter |    xn    |    fxn   |   dfxn   |  error |" << endl;
+        cout << "|   " << cont <<"   |" << x0 <<"|" << y0 << "|" << dy0  <<"|"<< "        " << "|" << endl;
         while((error>tol)&&(dy0!=0)&&(y0!=0)&&(cont<niter)){
             double x1= x0 -(y0/dy0);
             y0 = func(x1);
