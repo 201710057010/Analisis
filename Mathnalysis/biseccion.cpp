@@ -23,12 +23,12 @@ void biseccion(double (*func)(double),double a, double b, double tol, int niter)
 		cout << "b is a root" << endl;
 	}
 	else if (y0 * y1 < 0) {
-		cout << "|  niter  |   a  |  b  |   xm  |  fxm  | error |" << endl;
+ 		cout << "| niter |    a     |    b     |    xm    |    fxm    | error |" << endl;
 		double xm = (a + b) / 2;
 		double ym = func(xm);
 		int cont = 1;
 		double error = tol + 1;
-		cout << "|   " << cont << "   |" << a << "|" << b << "|" << xm << "|" << ym << "|" << " " << "|" << endl;
+		cout << "|   " << cont <<"   |" << a <<"|" <<  b << "|" << xm <<"| " << ym <<"|"<< "       " << "|" << endl;
 		while ((ym != 0) && (error > tol) && (cont < niter)) {
 			if (ym * y1 < 0) {
 				a = xm;
@@ -43,7 +43,7 @@ void biseccion(double (*func)(double),double a, double b, double tol, int niter)
 			ym = func(xm);
 			cont++;
 			error = abs(xm - aux);
-			cout << "|   " << cont << "  |" << a << "|" << b << "|" << xm << "|" << ym << "|" << error << "|" << endl;
+			cout << "|   " << cont <<"   |" << a <<"|" <<  b << "|" << xm <<"| " << ym  <<" | "<< error << "|" << endl;
 		}
 
 		if (ym == 0) {
