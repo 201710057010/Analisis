@@ -41,7 +41,7 @@ void reglaFalsa(double (*func)(double),double a, double b, double tol, int niter
 				y1 = ym;
 			}
 			double aux = xm;
-			xm = (a + b) / 2;
+			xm =  a - ((y0 * (b - a)) / (y1 - y0));
 			ym = func(xm);
 			cont++;
 			error = abs(xm - aux);
