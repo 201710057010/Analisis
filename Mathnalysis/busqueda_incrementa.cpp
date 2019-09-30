@@ -1,6 +1,7 @@
 #include<iostream>
 #include<cmath>
 #include<iomanip>
+#include "busqueda_incrementa.h"
 
 using namespace std;
 
