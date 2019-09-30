@@ -1,6 +1,7 @@
 #include<iostream>
 #include<cmath>
 #include<iomanip>
+#include "biseccion.h"
 
 using namespace std;
 
