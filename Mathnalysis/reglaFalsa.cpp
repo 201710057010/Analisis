@@ -1,6 +1,7 @@
 #include<iostream>
 #include<cmath>
 #include<iomanip>
+#include "reglaFalsa.h"
 
 using namespace std;
 
