@@ -15,7 +15,6 @@ double puntoFijo(double (*func)(double), double(*gFunc)(double), double xa, int 
 	double xn = 0;
 
 	cout << " | " << "iter" << "  |  " << "Xn" << "  |  " << "f(Xn)" << "  |  " << "Error" << "  |" << endl;
-
 	if (fx == 0) {
 		return fx;
 	}
