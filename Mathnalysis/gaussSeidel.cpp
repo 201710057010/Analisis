@@ -1,4 +1,6 @@
 #include "gaussSeidel.h"
+#include <iostream>
+
 
 vector<double> metodoGaussSeidel(vector<double> &variables, vector<vector<double> > &matriz, vector<double> &indepterms) {
 	double sum;
@@ -13,6 +15,7 @@ vector<double> metodoGaussSeidel(vector<double> &variables, vector<vector<double
 			}
 		}
 		results[i] = (indepterms[i] - sum) / matriz[i][i];
+		cout << results[i] << endl;
 	}
 	return results;
 }
