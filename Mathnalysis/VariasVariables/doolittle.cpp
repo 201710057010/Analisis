@@ -3,6 +3,7 @@
 #include <vector>
 #include <cfloat>
 #include <math.h>
+#include "doolittle.h"
 
 using namespace std;
 
@@ -41,6 +42,7 @@ void toStringIn(vector<vector<double> > &matriz, char name) {
   }
   printf("\n");
 }
+
 
 void factorizacionLU(vector<vector<double> >& A, vector<vector<double> >& L, vector<vector<double> >& U, int N) {
  for (int k = 1; k < N + 1; k++) {
