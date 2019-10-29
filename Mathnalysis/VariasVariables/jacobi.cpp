@@ -3,6 +3,7 @@
 #include<iomanip>
 #include<cfloat>
 #include<vector>
+#include "jacobi.h"
 
 using namespace std;
 

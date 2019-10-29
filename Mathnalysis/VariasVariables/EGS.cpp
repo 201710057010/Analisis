@@ -3,6 +3,7 @@
 #include<iomanip>
 #include<cfloat>
 #include<vector>
+#include "EGS.h"
 
 using namespace std;
 
