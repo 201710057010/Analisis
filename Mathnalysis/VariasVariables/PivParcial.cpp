@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <cfloat>
+#include "PivParcial.h"
 
 using namespace std;
 
