@@ -5,8 +5,7 @@ using namespace std;
   
 const int MAX = 100; 
   
-void Cholesky(int matrix[][MAX],  
-                                      int n) 
+void Cholesky(vector<vector<int>> matrix, int n) 
 { 
     int lower[n][n]; 
     memset(lower, 0, sizeof(lower)); 
@@ -48,6 +47,4 @@ void Cholesky(int matrix[][MAX],
             cout << setw(6) << lower[j][i] << "\t"; 
         cout << endl; 
     } 
-} 
-  
- 
+}
