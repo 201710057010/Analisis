@@ -51,12 +51,3 @@ void Cholesky(int matrix[][MAX],
 } 
   
  
-int main() 
-{ 
-    int n = 3; 
-    int matrix[][MAX] = { { 1, -3, 0 }, 
-                        { -3, 27, 15 }, 
-                        { 0, 15, 17 } }; 
-    Cholesky(matrix, n); 
-    return 0; 
-} 
