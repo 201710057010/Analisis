@@ -27,7 +27,7 @@ void inicializar(vector<vector<double> >& L, vector<vector<double> >& U, int n) 
   }
 }
 
-void toStringIn(vector<vector<double> > &matriz, char name) {
+void toStringIndo(vector<vector<double> > &matriz, char name) {
   printf("%c matriz\n", name);
   for (unsigned int i = 0; i < matriz.size(); i++) {
     for (unsigned int j = 0; j < matriz[0].size(); j++) {
@@ -44,11 +44,11 @@ void toStringIn(vector<vector<double> > &matriz, char name) {
 }
 
 
-void factorizacionLU(vector<vector<double> >& A, vector<vector<double> >& L, vector<vector<double> >& U, int N) {
+void factorizacionLUdo(vector<vector<double> >& A, vector<vector<double> >& L, vector<vector<double> >& U, int N) {
  for (int k = 1; k < N + 1; k++) {
    printf("Phase %d\n\n", k);
-   toStringIn(L, 'L');
-   toStringIn(U, 'U');
+   toStringIndo(L, 'L');
+   toStringIndo(U, 'U');
    double sum = 0;
    for (int p = 0; p < k - 1; p++) {
      sum += L[k - 1][p] * U[p][k - 1];
@@ -83,7 +83,7 @@ void factorizacionLU(vector<vector<double> >& A, vector<vector<double> >& L, vec
  }
 }
 
-vector<double> sustitucionForward(vector<vector<double> > &L, vector<double> &b) {
+vector<double> sustitucionForwarddo(vector<vector<double> > &L, vector<double> &b) {
   int N = L.size();
   std::vector<double> x(N, 0.0);
   for (int i = 1; i < N + 1; i++)
@@ -106,7 +106,7 @@ vector<double> sustitucionForward(vector<vector<double> > &L, vector<double> &b)
   return x;
 }
 
-vector<double> sustitucionBackward(vector<vector<double> > &U, vector<double> &z) {
+vector<double> sustitucionBackwarddo(vector<vector<double> > &U, vector<double> &z) {
   int N = U.size();
   vector<double> x(N, 0.0);
   for (int i = N - 1; i >= 0; i--) {
@@ -125,7 +125,7 @@ vector<double> sustitucionBackward(vector<vector<double> > &U, vector<double> &z
   return x;
 }
 
-void toStringMatrixCR(vector<vector<double> > &matrix)
+void toStringMatrixCRdo(vector<vector<double> > &matrix)
 {
   for (unsigned int i = 0; i < matrix.size(); i++)
     {
@@ -145,49 +145,19 @@ vector <double> doolittle(vector<vector <double>> A, vector<double> b){
   vector<vector<double> > U(n, vector<double>(n, 0.0));
   inicializar(L,U,n);
 
-  factorizacionLU(A, L, U, n);
+  factorizacionLUdo(A, L, U, n);
   printf("Final L matrix\n");
-  toStringMatrixCR(L);
+  //toStringMatrixCRdo(L);
   printf("Final U matrix\n");
-  toStringMatrixCR(U);
-  vector<double> Z = sustitucionForward(L, b);
+  toStringMatrixCRdo(U);
+  vector<double> Z = sustitucionForwarddo(L, b);
   printf("z vector\n");
   for (double e : Z) {
     printf("%f ", e);
   }
   printf("\n\n");
-  x = sustitucionBackward(U, Z);
+  x = sustitucionBackwarddo(U, Z);
   return x;
 
 }
 
-int main() {
-  vector<vector<double> > l(4, vector<double>(4, 0.0));
-  l[0][0] = 36;
-  l[0][1] = 3;
-  l[0][2] = -4;
-  l[0][3] = 5;
-  l[1][0] = 5;
-  l[1][1] = -45;
-  l[1][2] = 10;
-  l[1][3] = -2;
-  l[2][0] = 6;
-  l[2][1] =8;
-  l[2][2] = 57;
-  l[2][3] = 5;
-  l[3][0] = 2;
-  l[3][1] = 3;
-  l[3][2] = -8;
-  l[3][3] = -43;
-  
-  vector<double> m={20,69,96,-32};
-  
-  vector<double> a = doolittle(l,m);
-
-  for(int i =0; i< a.size(); i++){
-    cout <<"x"<<i+1<<"= "<< a[i] << endl;
-
-  }
-  // toStringIn(a,'a');
-  
-}

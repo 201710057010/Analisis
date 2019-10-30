@@ -5,7 +5,7 @@
 #include<iomanip>
 #include <cstring>
 #include "raices_multiples.h"
-#include "exceptions.h"
+#include "../exceptions.h"
 
 using namespace std;
 

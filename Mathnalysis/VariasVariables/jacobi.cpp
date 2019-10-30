@@ -7,7 +7,7 @@
 
 using namespace std;
 
-void toStringIn(vector<vector<double> > &matriz, char name) {
+void toStringInja(vector<vector<double> > &matriz, char name) {
   printf("%c matriz\n", name);
 
   for (unsigned int i = 0; i < matriz.size(); i++){
@@ -25,7 +25,7 @@ void toStringIn(vector<vector<double> > &matriz, char name) {
 }
 
 
-vector<vector <double> > formaMatrizAumentada (vector <vector<double> > a, vector<double> b, int n){
+vector<vector <double> > formaMatrizAumentadaja (vector <vector<double> > a, vector<double> b, int n){
     vector<vector<double> > aumentada(n, vector<double>(n+1, 0.0));
 
     for(int i=0; i<n; i++){
@@ -59,12 +59,12 @@ vector<double> calcularNuevoJacobi(vector<double> x, vector<vector<double> > ab,
 void jacobi(double tol, int iter, vector<double> x, vector<vector<double> > a, vector<double> b){
     int cont = 0;
     double disp = tol + 1;
-    vector<vector<double> > ab = formaMatrizAumentada(a,b,a.size()); 
+    vector<vector<double> > ab = formaMatrizAumentadaja(a,b,a.size()); 
     while(disp>tol && cont<iter){
       vector<double> xn = calcularNuevoJacobi(x, ab,1);
         double aux = 0;
         for(int i=0; i<a.size(); i++){
-	  aux = max(abs(x[i]-xn[i]), aux);
+	        aux = max(abs(x[i]-xn[i]), aux);
         }
         disp = aux;
         x = xn;

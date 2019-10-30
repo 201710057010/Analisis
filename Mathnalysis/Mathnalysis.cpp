@@ -13,6 +13,10 @@
 #include "EcuacionesUnaVariable\secante.h"
 #include "VariasVariables\gaussSeidel.h"
 #include "VariasVariables\crout.h"
+#include "VariasVariables\doolittle.h"
+#include "VariasVariables\EGS.h"
+#include "VariasVariables\jacobi.h"
+#include "VariasVariables\PivParcial.h"
 #include <math.h>
 #include <stdio.h>
 #include <iostream>
@@ -25,15 +29,17 @@ using namespace std;
 
 		//double x = puntoFijo(f, g, -0.5, 11, 0.0005, 0);
 		//double x = raicesMultiples(f,g,g2,-3.2,11,0.0005,0);
-		//vector<vector<double> > A = { {20,-1,3,4} , {6,23,4,3} , {7,21,46,9} , {-3,-9,12,38}};
-		//vector<double> b = { 30,-10,20,-14 };
-		//vector<double> c = { 0,0,0,0 };
+		//
+		//
+		//
 		//metodoGaussSeidel(c,A,b);
 
 int main()
 {
-	
-	int a,nIter;
+	vector<vector<double> > A = { {20,-1,3,4} , {6,23,4,3} , {7,21,46,9} , {-3,-9,12,38}};
+	vector<double> b = { 30,-10,20,-14 };
+	vector<double> c = { 0,0,0,0 };
+	int a,nIter, n, k;
 	double xa, tol, xb, delta, respuesta;
 	bool errorType;
 	a = -1;
@@ -73,16 +79,43 @@ int main()
 			case 8:
 				respuesta = raicesMultiples(f, g, g2, xa,nIter, tol, errorType);
 				cout << respuesta << endl;
+				break;
 			case 9:
 				biseccion(f,xa, xb, tol, nIter);
+				break;
 			case 10: 
 				busqueda_incremental(f,xa, delta, nIter);
+				break;
 			case 11:
 				newton(f, g, xa, tol, nIter);
+				break;
 			case 12:
 				reglaFalsa(f, xa,  xb, tol, nIter);
+				break;
 			case 13:
 				secante(f, tol, xa, xb, nIter);
+				break;
+			case 14:
+				metodoGaussSeidel(c, A, b);
+				break;
+			case 15:
+				metodoCrout( A, b);
+				break;
+			case 16:
+				doolittle(A, b);
+				break;
+			case 17:
+				cin >> n;
+				gausianaSimple(A, b, n );
+				break;
+			case 18:
+			    jacobi(tol, nIter, c, A, b);
+				break;
+			case 19:
+				cin >> n;
+				cin >> k;
+				pivParcial(A, n, k);
+				break;
 			}
 		}catch(exception e){
 		cout << e.what() << endl;

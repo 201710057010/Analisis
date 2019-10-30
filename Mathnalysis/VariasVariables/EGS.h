@@ -9,6 +9,6 @@
 using namespace std;
 
 vector<vector <double> > formaMatrizAumentada (vector <vector<double> > a, vector<double> b, int n);
-void toStringIn(vector<vector<double> > &matriz, char name);
+void toStringInEg(vector<vector<double> > &matriz, char name);
 vector<vector<double> > gausianaSimple (vector<vector<double> > &a, vector<double> &b, int n );
-vector<double> sustitucionBackward(vector<vector<double> > &Ab, int n);
+vector<double> sustitucionBackwardEg(vector<vector<double> > &Ab, int n);

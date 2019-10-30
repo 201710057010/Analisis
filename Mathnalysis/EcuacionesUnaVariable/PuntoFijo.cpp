@@ -3,7 +3,7 @@
 #include <cmath>
 #include <iostream>
 #include <cstring>
-#include "exceptions.h"
+#include "../exceptions.h"
 
 using namespace std;
 

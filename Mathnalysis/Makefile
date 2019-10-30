@@ -1,6 +1,6 @@
 all: Mathnalysis
 
-Mathnalysis: Mathnalysis.o EcuacionesUnaVariable/PuntoFijo.o EcuacionesUnaVariable/raices_multiples.o EcuacionesUnaVariable/biseccion.o EcuacionesUnaVariable/busqueda_incrementa.o EcuacionesUnaVariable/newton.o EcuacionesUnaVariable/reglaFalsa.o EcuacionesUnaVariable/secante.o VariasVariables/gaussSeidel.o VariasVariables/crout.o
+Mathnalysis: Mathnalysis.o EcuacionesUnaVariable/PuntoFijo.o EcuacionesUnaVariable/raices_multiples.o EcuacionesUnaVariable/biseccion.o EcuacionesUnaVariable/busqueda_incrementa.o EcuacionesUnaVariable/newton.o EcuacionesUnaVariable/reglaFalsa.o EcuacionesUnaVariable/secante.o VariasVariables/gaussSeidel.o VariasVariables/crout.o VariasVariables/doolittle.o VariasVariables/EGS.o VariasVariables/jacobi.o VariasVariables/PivParcial.o  
 			g++ -o $@ $^
 
 Mathnalysis.o: Mathnalysis.cpp Mathnalysis.h exceptions.h EcuacionesUnaVariable/PuntoFijo.h EcuacionesUnaVariable/raices_multiples.h EcuacionesUnaVariable/biseccion.h EcuacionesUnaVariable/busqueda_incrementa.h EcuacionesUnaVariable/newton.h EcuacionesUnaVariable/reglaFalsa.h EcuacionesUnaVariable/secante.h VariasVariables/gaussSeidel.h VariasVariables/crout.h
@@ -22,6 +22,14 @@ EcuacionesUnaVariable/secante.o: EcuacionesUnaVariable/secante.cpp EcuacionesUna
 VariasVariables/gaussSeidel.o: VariasVariables/gaussSeidel.cpp VariasVariables/gaussSeidel.h
 
 VariasVariables/crout.o: VariasVariables/crout.cpp VariasVariables/crout.h
+
+VariasVariables/doolittle.o: VariasVariables/doolittle.cpp VariasVariables/doolittle.h 
+
+VariasVariables/EGS.o: VariasVariables/EGS.cpp VariasVariables/EGS.h
+
+VariasVariables/jacobi.o: VariasVariables/jacobi.cpp VariasVariables/jacobi.h
+
+VariasVariables/PivParcial.o: VariasVariables/PivParcial.cpp VariasVariables/PivParcial.h
 
 clean:
 		rm -f *.o

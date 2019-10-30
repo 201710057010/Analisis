@@ -22,7 +22,7 @@ vector<vector <double> > formaMatrizAumentada (vector <vector<double> > a, vecto
     return aumentada;
 }
 
-void toStringIn(vector<vector<double> > &matriz, char name) {
+void toStringInEg(vector<vector<double> > &matriz, char name) {
 	printf("%c matriz\n", name);
 
 	for (unsigned int i = 0; i < matriz.size(); i++){
@@ -48,13 +48,13 @@ vector<vector<double> > gausianaSimple (vector<vector<double> > &a, vector<doubl
                 ab[i][j] = ab[i][j] - multiplicador * ab[k][j];
             }
         }
-        toStringIn(ab,'a');
+        toStringInEg(ab,'a');
     }
 
     return ab;
 }
 
-vector<double> sustitucionBackward(vector<vector<double> > &Ab, int n) {
+vector<double> sustitucionBackwardEg(vector<vector<double> > &Ab, int n) {
     
     vector<double> x(n, 0.0);
     x[n-1]= (Ab[n-1][n]/Ab[n-1][n-1]);
