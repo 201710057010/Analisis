@@ -5,7 +5,7 @@
 
 using namespace std;
 
-vector<vector<double>> swapRows(vector<vector<double>> Ab, int filaMayor, int k){
+vector<vector<double>> swapRowsPivT(vector<vector<double>> Ab, int filaMayor, int k){
   
     vector<double> aux = Ab[k];
 
@@ -31,7 +31,7 @@ vector<vector<double>> swapRows(vector<vector<double>> Ab, int filaMayor, int k)
 
 
 
-vector<vector<double>> swapCol(vector<vector<double>> Ab, int colMayor, int k){
+vector<vector<double>> swapColPivT(vector<vector<double>> Ab, int colMayor, int k){
   int n=Ab.size();
   
     for(int i=0;i<n;i++){
@@ -68,10 +68,10 @@ vector<vector <double> > pivTotal (vector<vector<double>> &Ab, int n, int k){
       cout << "El sistema no tiene solucion unica";
     } else {
       if(filaMayor != k){
-        Ab=swapRows(Ab,filaMayor,k);
+        Ab=swapRowsPivT(Ab,filaMayor,k);
 	
       }if(columnaMayor != k){
-	Ab=swapCol(Ab,columnaMayor,k);
+	Ab=swapColPivT(Ab,columnaMayor,k);
 	int temp=marcas[k];
 	marcas[k]=marcas[columnaMayor];
 	marcas[columnaMayor]=temp;
@@ -84,7 +84,7 @@ vector<vector <double> > pivTotal (vector<vector<double>> &Ab, int n, int k){
   return Ab;
 }
 
-vector<vector<double> > formaMatrizAumentada(vector<vector<double> > a, vector<double> b, int n){
+vector<vector<double> > formaMatrizAumentadaPivT(vector<vector<double> > a, vector<double> b, int n){
     vector<vector<double> > aumentada(n, vector<double>(n+1, 0.0));
     for(int i=0; i<n; i++){
         for(int j=0; j<n; j++){
@@ -100,7 +100,7 @@ vector<vector<double> > formaMatrizAumentada(vector<vector<double> > a, vector<d
 
 
 
-vector<vector<double>> EliminacionGaussPivoteo(vector<vector<double> > &Ab,int n){
+vector<vector<double>> EliminacionGaussPivT(vector<vector<double> > &Ab,int n){
   for(int k =0; k<n-1; k++){
     Ab = pivTotal(Ab,n,k);
     cout << "primera ";
@@ -136,11 +136,11 @@ vector<vector<double>> EliminacionGaussPivoteo(vector<vector<double> > &Ab,int n
 	return x;
 }
 
-vector <double> EliminacionGauss(vector<vector<double>> &A, vector<double> b, int n){
+vector <double> EliminacionGaussPivT(vector<vector<double>> &A, vector<double> b, int n){
   vector<double> x(n, 0.0);
   vector<vector<double> > Ab(n, vector<double>(n+1, 0.0));
-  Ab = formaMatrizAumentada(A,b,n);
-   Ab=EliminacionGaussPivoteo(Ab,n);
+  Ab = formaMatrizAumentadaPivT(A,b,n);
+   Ab=EliminacionGaussPivT(Ab,n);
    x=sustitucionBackwardPivt(Ab,n);
   return x;
   }
