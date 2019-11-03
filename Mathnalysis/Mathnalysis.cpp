@@ -16,7 +16,9 @@
 #include "VariasVariables\doolittle.h"
 #include "VariasVariables\EGS.h"
 #include "VariasVariables\jacobi.h"
+#include "VariasVariables\PivTotal.h"
 #include "VariasVariables\PivParcial.h"
+#include "VariasVariables\Cholesky.h"
 #include <math.h>
 #include <stdio.h>
 #include <iostream>
@@ -36,13 +38,15 @@ using namespace std;
 
 int main()
 {
-	vector<vector<double> > A = { {20,-1,3,4} , {6,23,4,3} , {7,21,46,9} , {-3,-9,12,38}};
-	vector<double> b = { 30,-10,20,-14 };
+	vector<vector<double> > A = { {34,-5,6,12} , {-9,43,21,-8} , {-12,4,75,22} , {7,5,-13,65}};
+	vector<double> b = { 37,123,16,9 };
 	vector<double> c = { 0,0,0,0 };
 	int a,nIter, n, k;
 	double xa, tol, xb, delta, respuesta;
 	bool errorType;
 	a = -1;
+	vector<double> x;
+	vector<vector<double>> ab;
 	while(a != 0){
 		try{	
 			cin >> a;
@@ -102,19 +106,38 @@ int main()
 				metodoCrout( A, b);
 				break;
 			case 16:
-				doolittle(A, b);
+			  	x = doolittle(A, b);
+			  	for(int i = 0; i <4; i++){
+			    	cout << "x" << i << "= " << x[i] << endl;
+			  	}
 				break;
 			case 17:
-				cin >> n;
-				gausianaSimple(A, b, n );
+			    ab = gausianaSimple(A, b, 4);
+				x = sustitucionBackwardEg(ab,4);
+				for(int i = 0; i< 4; i++){
+				  cout << "x"<< i << "= " << x[i] << endl; 
+				}
 				break;
 			case 18:
 			    jacobi(tol, nIter, c, A, b);
 				break;
 			case 19:
-				cin >> n;
-				cin >> k;
-				pivParcial(A, n, k);
+			  	x = EliminacionGauss(A, b, 4);
+			  	for(int i = 0; i <4; i++){
+			    	cout << "x" << i << "= " << x[i] << endl;
+			  	}
+				break;
+		    case 20:
+				x = EliminacionGaussPivT(A, b, 4);
+			  	for(int i = 0; i < 4; i++){
+			  	  cout << "x" << i << "= " << x[i] << endl;
+			  	}
+				break;
+			case 21:
+				x = metodoCholesky(A, b);
+			  	for(int i = 0; i <4; i++){
+			    	cout << "x" << i << "= " << x[i] << endl;
+			  	}
 				break;
 			}
 		}catch(exception e){

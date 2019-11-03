@@ -10,7 +10,7 @@ vector <double> metodoCrout(vector<vector<double> > A, vector<double> b) {
 	vector<double> results;
 	vector<vector<double> > L(N, vector<double>(N, 0.0));
 	vector<vector<double> > U(N, vector<double>(N, 0.0));
-	inicializar(L, U);
+	inicializar(L, U); 
 
 	try {
 		factorizacionLU(A, L, U, N);
