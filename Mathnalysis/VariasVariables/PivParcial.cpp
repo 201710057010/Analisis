@@ -2,7 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <cfloat>
-#include <PivParcial.h>
+#include "PivParcial.h"
 
 using namespace std;
 
@@ -111,10 +111,3 @@ vector <double> EliminacionGauss(vector<vector<double>> &A, vector<double> b, in
 
   
 
-int main(){
-  vector<vector<double> > A = { {34,-5,6,12} , {-9,43,21,-8} , {-12,4,75,22} , {7,5,-13,65}};
-  vector<double> b = { 37,123,16,9 };
-  vector<double> c = { 0,0,0,0 };
-
-  EliminacionGauss(A, b, A.size());
-}

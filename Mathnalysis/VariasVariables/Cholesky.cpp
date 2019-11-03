@@ -166,10 +166,4 @@ vector <double> metodoCholesky(vector<vector<double> > A, vector<double> b) {
 	return results;
 }
 
-int main(){
-  vector<vector<double> > A = { {34,-5,6,12} , {-9,43,21,-8} , {-12,4,75,22} , {7,5,-13,65}};
-  vector<double> b = { 37,123,16,9 };
-  vector<double> c = { 0,0,0,0 };
 
-  metodoCholesky(A,b);
-}

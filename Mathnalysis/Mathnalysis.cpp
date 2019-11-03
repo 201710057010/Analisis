@@ -103,7 +103,7 @@ int main()
 				metodoGaussSeidel(c, A, b);
 				break;
 			case 15:
-				metodoCrout( A, b);
+				metodoCrout( A, b);				
 				break;
 			case 16:
 			  	x = doolittle(A, b);
