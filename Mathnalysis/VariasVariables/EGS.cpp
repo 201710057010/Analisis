@@ -42,6 +42,7 @@ void toStringInEg(vector<vector<double> > &matriz, char name) {
 vector<vector<double> > gausianaSimple (vector<vector<double> > &a, vector<double> &b, int n  ){
     vector<vector<double> > ab = formaMatrizAumentada(a,b,n);
     for(int k=0; k<n; k++){
+      cout << "ETAPA "<< k+1 << endl;
         for(int i=k+1; i<n; i++){
             double multiplicador = ab[i][k]/a[k][k];
             for(int j=k; j<n+1; j++){

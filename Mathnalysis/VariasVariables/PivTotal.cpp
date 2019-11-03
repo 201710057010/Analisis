@@ -103,7 +103,7 @@ vector<vector<double> > formaMatrizAumentadaPivT(vector<vector<double> > a, vect
 vector<vector<double>> EliminacionGaussPivT(vector<vector<double> > &Ab,int n){
   for(int k =0; k<n-1; k++){
     Ab = pivTotal(Ab,n,k);
-    cout << "primera ";
+    cout << "ETAPA " << k+1 << endl;
     toStringInPivT(Ab);
     double multiplicador=0;
     for(int i=k+1; i<n; i++){
