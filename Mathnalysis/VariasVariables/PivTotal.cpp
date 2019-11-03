@@ -144,5 +144,3 @@ vector <double> EliminacionGaussPivT(vector<vector<double>> &A, vector<double> b
    x=sustitucionBackwardPivt(Ab,n);
   return x;
   }
-
-

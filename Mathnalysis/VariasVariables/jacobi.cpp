@@ -69,8 +69,13 @@ void jacobi(double tol, int iter, vector<double> x, vector<vector<double> > a, v
         disp = aux;
         x = xn;
         cont++;
-    }
 
+	cout << "Iteración " << cont << endl;
+	for(int i=0; i<x.size(); i++){
+	  cout << " x" << i << " = " << x[i] << endl;
+	}
+    }
+    
     if(disp < tol){
       for(int i=0; i<x.size(); i++){
 	cout << "x" << i << " = " << x[i] << "  ";
@@ -80,5 +85,3 @@ void jacobi(double tol, int iter, vector<double> x, vector<vector<double> > a, v
       cout << "Fracasó en " << iter << " iteraciones. ";
     }
 }
-
-

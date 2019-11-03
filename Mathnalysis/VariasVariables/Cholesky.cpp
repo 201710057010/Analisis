@@ -1,8 +1,8 @@
 #include <cstdlib>
 #include <iostream>
 #include <vector>
+#include <cmath>
 #include <cfloat>
-#include <math.h>
 
 using namespace std;
 
@@ -166,36 +166,10 @@ vector <double> metodoCholesky(vector<vector<double> > A, vector<double> b) {
 	return results;
 }
 
-/*int main(){
- vector<vector<double> > l(4, vector<double>(4, 0.0));
-  l[0][0] = 20;
-  l[0][1] = -1;
-  l[0][2] = 3;
-  l[0][3] = 4;
-  l[1][0] = 6;
-  l[1][1] = 23;
-  l[1][2] = 4;
-  l[1][3] = 3;
-  l[2][0] = 7;
-  l[2][1] = 21;
-  l[2][2] = 46;
-  l[2][3] = 9;
-  l[3][0] = -3;
-  l[3][1] = -9;
-  l[3][2] = 12;
-  l[3][3] = 38;
+int main(){
+  vector<vector<double> > A = { {34,-5,6,12} , {-9,43,21,-8} , {-12,4,75,22} , {7,5,-13,65}};
+  vector<double> b = { 37,123,16,9 };
+  vector<double> c = { 0,0,0,0 };
 
-  
-  
-  vector<double> m={30.0,-10.0,20.0,-14.0};
-  
-  vector<double> x=metodoCholesky(l,m);
-
-  for(int i =0; i<4; i++){
-    cout << "x" << i << "= " << x[i] << endl;
-  }
-  
-  //toStringIn(a,'a');
-
-
-  }*/
+  metodoCholesky(A,b);
+}
