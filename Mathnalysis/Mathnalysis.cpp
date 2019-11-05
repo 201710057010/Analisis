@@ -38,8 +38,8 @@ using namespace std;
 
 int main()
 {
-	vector<vector<double> > A = { {34,-5,6,12} , {-9,43,21,-8} , {-12,4,75,22} , {7,5,-13,65}};
-	vector<double> b = { 37,123,16,9 };
+	vector<vector<double> > A = { {20,-1,3,4} , {6,23,4,3} , {7,21,46,9} , {-3,-9,12,38}};
+	vector<double> b = { 30,-10,20,-14 };
 	vector<double> c = { 0,0,0,0 };
 	int a,nIter, n, k;
 	double xa, tol, xb, delta, respuesta;
@@ -103,7 +103,10 @@ int main()
 				metodoGaussSeidel(c, A, b);
 				break;
 			case 15:
-				metodoCrout( A, b);				
+			       x =metodoCrout( A, b);
+			       for(int i = 0; i < 4; i++){
+			  	  cout << "x" << i << "= " << x[i] << endl;
+			  	}
 				break;
 			case 16:
 			  	x = doolittle(A, b);

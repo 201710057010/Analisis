@@ -22,17 +22,12 @@ vector<vector <double> > formaMatrizAumentada (vector <vector<double> > a, vecto
     return aumentada;
 }
 
-void toStringInEg(vector<vector<double> > &matriz, char name) {
-	printf("%c matriz\n", name);
-
-	for (unsigned int i = 0; i < matriz.size(); i++){
-		for (unsigned int j = 0; j < matriz[0].size(); j++) {
-			if (matriz[i][j] == DBL_MAX) {
-				printf("%6c%d%d ", name, j + 1, i + 1);
-			}
-			else {
-				printf("%.6f ", matriz[i][j]);
-			}
+void toStringInEg(vector<vector<double> > &matrix) {
+  for (unsigned int i = 0; i < matrix.size(); i++)
+	{
+		for (unsigned int j = 0; j < matrix[0].size(); j++)
+		{
+			printf("%f ", matrix[i][j]);
 		}
 		cout << endl;
 	}
@@ -41,15 +36,17 @@ void toStringInEg(vector<vector<double> > &matriz, char name) {
 
 vector<vector<double> > gausianaSimple (vector<vector<double> > &a, vector<double> &b, int n  ){
     vector<vector<double> > ab = formaMatrizAumentada(a,b,n);
-    for(int k=0; k<n; k++){
+    for(int k=0; k<n-1; k++){
       cout << "ETAPA "<< k+1 << endl;
+      double multiplicador=0;
         for(int i=k+1; i<n; i++){
-            double multiplicador = ab[i][k]/a[k][k];
+	  multiplicador = (ab[i][k]/ab[k][k]);
+	  //cout << multiplicador << endl;
             for(int j=k; j<n+1; j++){
-                ab[i][j] = ab[i][j] - multiplicador * ab[k][j];
+	      ab[i][j] = (ab[i][j] - (multiplicador * ab[k][j]));
             }
         }
-        toStringInEg(ab,'a');
+        toStringInEg(ab);
     }
 
     return ab;

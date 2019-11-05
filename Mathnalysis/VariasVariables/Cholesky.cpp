@@ -6,7 +6,7 @@
 
 using namespace std;
 
-void toStringMatrixCR(vector<vector<double> > &matrix)
+void toStringMatrixCRch(vector<vector<double> > &matrix)
 {
 	for (unsigned int i = 0; i < matrix.size(); i++)
 	{
@@ -20,7 +20,7 @@ void toStringMatrixCR(vector<vector<double> > &matrix)
 }
 
 
-void toStringIn(vector<vector<double> > &matriz, char name) {
+void toStringInch(vector<vector<double> > &matriz, char name) {
 	printf("%c matriz\n", name);
 
 	for (unsigned int i = 0; i < matriz.size(); i++) {
@@ -38,7 +38,7 @@ void toStringIn(vector<vector<double> > &matriz, char name) {
 }
 
 
-void inicializar(vector<vector<double> >& L, vector<vector<double> >& U) {
+void inicializarch(vector<vector<double> >& L, vector<vector<double> >& U) {
 	int N = L.size();
 	for (int i = 0; i < N; i++) {
 		for (int j = 0; j < N; j++) {
@@ -58,11 +58,11 @@ void inicializar(vector<vector<double> >& L, vector<vector<double> >& U) {
 	}
 }
 
-void factorizacionLU(vector<vector<double> >& A, vector<vector<double> >& L, vector<vector<double> >& U, int N) {
+void factorizacionLUch(vector<vector<double> >& A, vector<vector<double> >& L, vector<vector<double> >& U, int N) {
 	for (int k = 1; k < N + 1; k++) {
 		printf("Phase %d\n\n", k);
-		toStringIn(L, 'L');
-		toStringIn(U, 'U');
+		toStringInch(L, 'L');
+		toStringInch(U, 'U');
 		double sum = 0;
 		for (int p = 0; p < k - 1; p++) {
 			sum += L[k - 1][p] * U[p][k - 1];
@@ -98,7 +98,7 @@ void factorizacionLU(vector<vector<double> >& A, vector<vector<double> >& L, vec
 	}
 }
 
-vector<double> sustitucionForward(vector<vector<double> > &L, vector<double> &b) {
+vector<double> sustitucionForwardch(vector<vector<double> > &L, vector<double> &b) {
 	int N = L.size();
 	std::vector<double> x(N, 0.0);
 	for (int i = 1; i < N + 1; i++)
@@ -121,7 +121,7 @@ vector<double> sustitucionForward(vector<vector<double> > &L, vector<double> &b)
 	return x;
 }
 
-vector<double> sustitucionBackward(vector<vector<double> > &U, vector<double> &z) {
+vector<double> sustitucionBackwardch(vector<vector<double> > &U, vector<double> &z) {
 	int N = U.size();
 	vector<double> x(N, 0.0);
 	for (int i = N - 1; i >= 0; i--) {
@@ -147,21 +147,21 @@ vector <double> metodoCholesky(vector<vector<double> > A, vector<double> b) {
 	vector<double> results;
 	vector<vector<double> > L(N, vector<double>(N, 0.0));
 	vector<vector<double> > U(N, vector<double>(N, 0.0));
-	inicializar(L, U);
+	inicializarch(L, U);
 
 	
-		factorizacionLU(A, L, U, N);
+		factorizacionLUch(A, L, U, N);
 		printf("Final L matrix\n");
-		toStringMatrixCR(L);
+		toStringMatrixCRch(L);
 		printf("Final U matrix\n");
-		toStringMatrixCR(U);
-		vector<double> Z = sustitucionForward(L, b);
+		toStringMatrixCRch(U);
+		vector<double> Z = sustitucionForwardch(L, b);
 		printf("z vector\n");
 		for (double e : Z) {
 			printf("%f ", e);
 		}
 		printf("\n\n");
-		results = sustitucionBackward(U, Z);
+		results = sustitucionBackwardch(U, Z);
 	
 	return results;
 }

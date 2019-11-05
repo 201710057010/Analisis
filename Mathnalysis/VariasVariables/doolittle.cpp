@@ -8,7 +8,7 @@
 using namespace std;
 
 
-void inicializar(vector<vector<double> >& L, vector<vector<double> >& U, int n) {
+void inicializardo(vector<vector<double> >& L, vector<vector<double> >& U, int n) {
   for (int i = 0; i < n; i++) {
     for (int j = 0; j < n; j++) {
       if (i < j) {
@@ -143,11 +143,11 @@ vector <double> doolittle(vector<vector <double>> A, vector<double> b){
   vector <double> x;
   vector<vector<double> > L(n, vector<double>(n, 0.0));
   vector<vector<double> > U(n, vector<double>(n, 0.0));
-  inicializar(L,U,n);
+  inicializardo(L,U,n);
 
   factorizacionLUdo(A, L, U, n);
   printf("Final L matrix\n");
-  //toStringMatrixCRdo(L);
+  toStringMatrixCRdo(L);
   printf("Final U matrix\n");
   toStringMatrixCRdo(U);
   vector<double> Z = sustitucionForwarddo(L, b);
