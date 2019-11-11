@@ -95,8 +95,3 @@ void interpCubica(vector<double> &xn, vector<double> &fxn){
   cout << ecuaciones << endl;
 }
 
-int main(){
-  vector<double> b = { 1,3,4,5 };
-  vector<double> c = { 3,1,3.5,2 };
-  interpCubica(b,c);
-}
