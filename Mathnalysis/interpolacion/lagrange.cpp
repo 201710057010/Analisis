@@ -2,7 +2,7 @@
 #include <iostream> 
 #include <vector>
 #include <cfloat>
-//#include "PivParcial.h"
+#include "lagrange.h"
 #include <string>
 
 using namespace std;
@@ -47,7 +47,7 @@ double lagrange(vector<double>x, vector<double>y, int n, double v){
 
 }
 
-int main(){
+/*int main(){
 
   vector<double> x ={1,3,4,5,7};
   vector<double> y ={4.31,1.5,3.2,2.6,1.8};
@@ -57,3 +57,4 @@ int main(){
   cout << "p(" << v << ")=" << res << endl;
 
 }
+*/
