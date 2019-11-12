@@ -7,7 +7,7 @@
 
 using namespace std;
 
-void toStringdd(vector<vector<double> > &matrix) {
+void toStringd3(vector<vector<double> > &matrix) {
   for (unsigned int i = 0; i < matrix.size(); i++)
 	{
 		for (unsigned int j = 0; j < matrix[0].size(); j++)
@@ -20,7 +20,7 @@ void toStringdd(vector<vector<double> > &matrix) {
 }
 
 double diferenciasDivididas(vector<double> x, vector<double> y, int n, double v){
-  vector<vector<double>> dd(n, vector<double>(n,0.0)); 
+ vector<vector<double>> dd(n, vector<double>(n,0.0)); 
   for(int i =0; i<n; i++ ){
     dd[i][0] = y[i];
   }
@@ -41,7 +41,7 @@ double diferenciasDivididas(vector<double> x, vector<double> y, int n, double v)
     }
   }
 
-  toStringdd(dd);
+  toStringd3(dd);
   double suma =0;
   for(int i=0; i<n; i++){
     double factor =1;

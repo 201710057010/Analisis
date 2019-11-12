@@ -20,6 +20,11 @@
 #include "VariasVariables/PivParcial.h"
 #include "VariasVariables/Cholesky.h"
 #include "analizador/analizer.h"
+#include "interpolacion/diferenciasdivididas.h"
+#include "interpolacion/InterpolacionCubica.h"
+#include "interpolacion/InterpolacionLineal.h"
+#include "interpolacion/lagrange.h"
+#include "interpolacion/splineCuadratico.h"
 #include <math.h>
 #include <stdio.h>
 #include <iostream>
@@ -28,7 +33,7 @@
 double f2(double x);
 double f(double x);
 double g2(double x);
-int a,nIter,n,k, var;
+int a,nIter,n,k, var,puntoInicial;
 double xa, tol, xb, delta, respuesta;
 bool errorType;
 vector<double> x;
@@ -37,6 +42,9 @@ vector<double> b;
 vector<double> c;
 vector<vector<double> > ab;
 string funcionf,funciong,funcionf2;
+vector <double> puntosx;
+vector <double> puntosy;
+
 
 using namespace std;
 
@@ -70,6 +78,32 @@ void leererrorType(){
 
 void leernIter(){
 	cin >> nIter;
+}
+
+void leerPuntosx(int temporal){
+	cout << "inserte los puntos" << endl;
+	double aux;
+	vector<double> x(temporal,0);
+	puntosx = x;
+	for(int i = 0; i < temporal; i++){
+		cin >> aux;
+		puntosx[i] = aux;
+	}
+}
+
+void leerPuntosy(int temporal){
+	cout << "inserte los puntos" << endl;
+	double aux;
+	vector<double> x(temporal,0);
+	puntosy = x;
+	for(int i = 0; i < temporal; i++){
+		cin >> aux;
+		puntosy[i] = aux;
+	}
+}
+
+void leerpuntoInicial(){
+	cin >> puntoInicial;
 }
 
 void randomize(int n,int m){
@@ -106,6 +140,7 @@ void randomizec(int n){
 
 void leerA(int n, int m){
 	double aux = 0;
+	cout << "inserte la matriz:" << endl;
 	vector<vector<double> > x(n,vector<double>(m, 0));
 	A = x;
 	for(int i = 0; i < n; i++){
@@ -119,6 +154,7 @@ void leerA(int n, int m){
 void leerb(int n){
 	int aux;
 	vector<double> x(n,0);
+	cout << "inserte el vector" << endl;
 	b = x;
 	for(int i = 0; i < n; i++){
 		cin >> aux;
@@ -130,6 +166,7 @@ void leerc(int n){
 	int aux;
 	vector<double> x(n,0);
 	c = x;
+	cout << "inserte los terminos independientes" << endl;
 	for(int i = 0; i < n; i++){
 		cin >> aux;
 		c[i] = aux;
@@ -156,28 +193,74 @@ int main()
 {
 	vector<double> x;
 	vector<vector<double>> ab;
+	cout << "***Mathnalysis***" << endl;
+	cout << "instrucciones:" << endl;
+	cout << "1 para insertar xa" << endl;
+	cout << "2 para insertar tolerancia" << endl;
+	cout << "3 para insertar xb" << endl;
+	cout << "4 para insertar delta" << endl;
+	cout << "5 para insertar el tipo de error" << endl;
+	cout << "6 para insertar el numero de iteraciones" << endl;
+	cout << "7 para insertar una matriz A" << endl;
+	cout << "8 para insertar una matriz b " << endl;
+	cout << "9 para insertar una matriz c" << endl;
+	cout << "10 para insertar una funcion f " << endl;
+	cout << "11 para insertar una funcion f'" << endl;
+	cout << "12 para insertar una funcion g" << endl;
+	cout << "13 para ejecutar el metodo de biseccion" << endl;
+	cout << "14 para ejecutar el metodo de busqueda incremental" << endl;
+	cout << "15 para ejecutar el metodo de newton" << endl;
+	cout << "16 para ejecutar el metodo de punto fijo" << endl;
+	cout << "17 para ejecutar el metodo de raices multiples" << endl;
+	cout << "18 para ejecutar el metodo de regla falsa" << endl;
+	cout << "19 para ejecutar el metodo de secante " << endl;
+	cout << "20 para ejecutar el metodo de cholesky" << endl;
+	cout << "21 para ejecutar el metodo de crout" << endl;
+	cout << "22 para ejecutar el metodo de doolitle" << endl;
+	cout << "23 para ejecutar el metodo de eliminacion gaussiana simple" << endl;
+	cout << "24 para ejecutar el metodo de gauss seidel" << endl;
+	cout << "25 para ejecutar el metodo de jacobi" << endl;
+	cout << "26 para ejecutar el metodo de elminacion gaussiana con pivoteo parcial" << endl;
+	cout << "27 para ejecutar el metodo de elminacion gaussiana con pivoteo total" << endl;
+	cout << "28 para insertar los puntos x" << endl;
+	cout << "29 para insertar los puntos y" << endl;
+	cout << "30 para ejecutar el metodo de diferencias divididas" << endl;
+	cout << "31 para ejecutar el spline cubico " << endl;
+	cout << "32 para ejecutar el spline lineas " << endl;
+	cout << "33 para ejecutar el metodo de lagrange" << endl;
+	cout << "0 para salir del programa" << endl;
+	
 	try{
 		a = -1;
+		int temporal;
+		double v;
+		double respuesta;
 		while(a != 0){
 			cin >> a;
 			switch (a)
 			{
 				case 1:
+					cout << "digite el xa: " << endl;
 					leerxa();
 					break;
 				case 2:
+				    cout << "digite la tolerancia: " << endl;
 					leertol();
 					break;
 				case 3:
+					cout << "digite el xb: " << endl;
 					leerxb();
 					break;
 				case 4:
+					cout << "digite el delta: " << endl;
 					leerdelta();
 					break;
 				case 5:
+					cout << "digite 0 para el absoluto, 1 para el relativo: " << endl;
 					leererrorType();
 					break;
 				case 6:
+					cout << "digite el numero de iteraciones: : " << endl;
 					leernIter();
 					break;
 				case 7:
@@ -197,12 +280,15 @@ int main()
 					leerc(n);
 					break;
 				case 10:
+					cout << "digite la funcion f: " << endl;
 		    		leerfuncionf();
 					break;
 				case 11:
+					cout << "digite la funcion f': " << endl;
 					leerfuncionf2();
 					break;
 				case 12:
+					cout << "digite la funcion g: " << endl;
 					leerfunciong();
 					break;
 				case 13:
@@ -227,12 +313,6 @@ int main()
 					secante(f,tol,xa,xb,nIter);
 					break;
 				case 20:
-					cout << f(var) << endl;
-					break;
-				case 21:
-					leervar();
-					break;
-				case 22:
 					//randomize(100,100);
 					//randomizeb(100);
 					x = metodoCholesky(A,b);
@@ -240,45 +320,72 @@ int main()
 			    		cout << "x" << i+1 << "= " << x[i] << endl;
 			  		}
 					break;
-				case 23:
+				case 21:
 					x = metodoCrout(A,b);
 					for(int i = 0; i <x.size(); i++){
 			    		cout << "x" << i+1 << "= " << x[i] << endl;
 			  		}
 					break;
-				case 24:
+				case 22:
 					x = doolittle(A,b);
 					for(int i = 0; i <x.size(); i++){
 			    		cout << "x" << i+1 << "= " << x[i] << endl;
 			  		}
 					break;
-				case 25:
+				case 23:
 					ab = gausianaSimple(A,b,A.size());
 					x = sustitucionBackwardEg(ab,ab.size());
 					for(int i = 0; i < x.size(); i++){
 			    		cout << "x" << i+1 << "= " << x[i] << endl;
 			  		}
 					break;
-				case 26:
+				case 24:
 					x = metodoGaussSeidel(c, A, b);
 					for(int i = 0; i < x.size(); i++){
 			    		cout << "x" << i+1 << "= " << x[i] << endl;
 			  		}
 					break;
-				case 27:
+				case 25:
 					jacobi(tol, nIter, c, A, b);
 				    break;
-				case 28:
+				case 26:
 					x = EliminacionGauss(A,b,A.size());
 					for(int i = 0; i < x.size(); i++){
 			    		cout << "x" << i+1 << "= " << x[i] << endl;
 			  		}
 					break;
-				case 29:
+				case 27:
 					x = EliminacionGaussPivT(A, b, A.size());
 					for(int i = 0; i < x.size(); i++){
 			    		cout << "x" << i+1 << "= " << x[i] << endl;
 			  		}
+					break;
+				case 28:
+					cout << "inserte la cantidad de puntos" << endl;
+					cin >> temporal;
+					leerPuntosx(temporal);
+					break;
+				case 29:
+					cout << "inserte la cantidad de puntos" << endl;
+					cin >> temporal;
+					leerPuntosy(temporal);
+					break;
+				case 30:
+				    cout << "desde donde va empezar:" << endl;
+					cin >> v; 
+					cout << diferenciasDivididas(puntosx, puntosy, puntosx.size(), v) << endl;
+					break;
+				case 31:
+					interpCubica(puntosx, puntosy);
+					break;
+				case 32:
+					respuesta = interpolate( puntosx, puntosy, true ); 
+					cout << respuesta << endl;
+					break;
+				case 33:
+				    cout << "desde donde va empezar:" << endl;
+					cin >> v; 
+					cout << lagrange(puntosx, puntosy, puntosx.size(), v) << endl;
 					break;
 			}
 		}

@@ -4,5 +4,5 @@
 
 using namespace std;
 
-void interpolate (vector<double> &xData, vector<double> &yData, double x, bool extrapolate );
+double interpolate (vector<double> &xData, vector<double> &yData, bool extrapolate );
 
