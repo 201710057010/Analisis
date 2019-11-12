@@ -154,11 +154,9 @@ void leervar(){
 
 int main()
 {
-	int n = 0;
-	randomize(3000,3000);
-	randomizeb(3000);
-	metodoCholesky(A,b);
-	/**try{
+	vector<double> x;
+	vector<vector<double>> ab;
+	try{
 		a = -1;
 		while(a != 0){
 			cin >> a;
@@ -235,15 +233,58 @@ int main()
 					leervar();
 					break;
 				case 22:
-					randomize(100,100);
-					randomizeb(100);
-					metodoCholesky(A,b);
+					//randomize(100,100);
+					//randomizeb(100);
+					x = metodoCholesky(A,b);
+					for(int i = 0; i <x.size(); i++){
+			    		cout << "x" << i+1 << "= " << x[i] << endl;
+			  		}
+					break;
+				case 23:
+					x = metodoCrout(A,b);
+					for(int i = 0; i <x.size(); i++){
+			    		cout << "x" << i+1 << "= " << x[i] << endl;
+			  		}
+					break;
+				case 24:
+					x = doolittle(A,b);
+					for(int i = 0; i <x.size(); i++){
+			    		cout << "x" << i+1 << "= " << x[i] << endl;
+			  		}
+					break;
+				case 25:
+					ab = gausianaSimple(A,b,A.size());
+					x = sustitucionBackwardEg(ab,ab.size());
+					for(int i = 0; i < x.size(); i++){
+			    		cout << "x" << i+1 << "= " << x[i] << endl;
+			  		}
+					break;
+				case 26:
+					x = metodoGaussSeidel(c, A, b);
+					for(int i = 0; i < x.size(); i++){
+			    		cout << "x" << i+1 << "= " << x[i] << endl;
+			  		}
+					break;
+				case 27:
+					jacobi(tol, nIter, c, A, b);
+				    break;
+				case 28:
+					x = EliminacionGauss(A,b,A.size());
+					for(int i = 0; i < x.size(); i++){
+			    		cout << "x" << i+1 << "= " << x[i] << endl;
+			  		}
+					break;
+				case 29:
+					x = EliminacionGaussPivT(A, b, A.size());
+					for(int i = 0; i < x.size(); i++){
+			    		cout << "x" << i+1 << "= " << x[i] << endl;
+			  		}
 					break;
 			}
 		}
 	}catch(exception e){
 		cout << e.what() << endl;
-	}*/
+	}
 	return 0;
 }
 

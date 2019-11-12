@@ -5,6 +5,7 @@
 #include<vector>
 #include "EGS.h"
 #include <stdio.h>
+#include <omp.h>
 
 using namespace std;
 
@@ -39,6 +40,7 @@ vector<vector<double> > gausianaSimple (vector<vector<double> > &a, vector<doubl
     for(int k=0; k<n-1; k++){
       cout << "ETAPA "<< k+1 << endl;
       double multiplicador=0;
+      #pragma omp parallel for
       for(int i=k+1; i<n; i++){
         multiplicador = (ab[i][k]/ab[k][k]);
 	      //cout << multiplicador << endl;
@@ -55,9 +57,9 @@ vector<double> sustitucionBackwardEg(vector<vector<double> > &Ab, int n) {
     
     vector<double> x(n, 0.0);
     x[n-1]= (Ab[n-1][n]/Ab[n-1][n-1]);
-    
         for (int i = n - 2; i>=0; i--) {
           double sum = 0;
+          #pragma omp parallel for
           for (int j = i + 1; j < n; j++) {
             sum = sum + (Ab[i][j]*x[j]);
           }

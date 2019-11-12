@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include<vector>
 #include "jacobi.h"
+#include <omp.h>
 
 using namespace std;
 
@@ -40,6 +41,7 @@ vector<vector <double> > formaMatrizAumentadaja (vector <vector<double> > a, vec
 
 vector<double> calcularNuevoJacobi(vector<double> x, vector<vector<double> > ab, double lamda){
     vector<double> r(x.size(),0.0);
+    #pragma omp parallel for
     for(int i=0; i<x.size(); i++){
       double suma = 0;
       for(int j=0; j<x.size(); j++){

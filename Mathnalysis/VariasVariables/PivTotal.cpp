@@ -4,6 +4,7 @@
 #include <cfloat>
 #include "PivTotal.h"
 #include <stdio.h>
+#include <omp.h>
 
 using namespace std;
 vector<int> marcas;
@@ -84,14 +85,16 @@ vector<vector<double> > formaMatrizAumentadaPivT(vector<vector<double> > a, vect
 vector<vector<double> > EliminacionGaussPivT(vector<vector<double> > &Ab,int n){
   vector<int> m(n);
   marcas =m;
+  #pragma omp parallel for
   for (int i=0;i<n;i++){
     marcas[i]=i;
-    }
+  }
   for(int k =0; k<n-1; k++){
     Ab = pivTotal(Ab,n,k);
     cout << "ETAPA " << k+1 << endl;
     toStringInPivT(Ab);
     double multiplicador=0;
+    #pragma omp parallel for
     for(int i=k+1; i<n; i++){
       multiplicador = (Ab[i][k]/Ab[k][k]);
       for(int j=k; j<n+1; j++){
@@ -110,7 +113,8 @@ vector<double> sustitucionBackwardPivt(vector<vector<double> > Ab, int n) {
     vector<double> x(n, 0.0);
     x[marcas[n]]= (Ab[n-1][n]/Ab[n-1][n-1]);
     for (int i = n - 1; i >= 0; i--) {
-      double sum = 0;
+      double sum = 0;      
+      #pragma omp parallel for
       for (int j = i + 1; j < n; j++) {
         sum = sum+(Ab[i][j]*x[marcas[j]]);
       }

@@ -63,17 +63,19 @@ void inicializarch(vector<vector<double> >& L, vector<vector<double> >& U) {
 void factorizacionLUch(vector<vector<double> >& A, vector<vector<double> >& L, vector<vector<double> >& U, int N) {
 	//omp_set_dynamic(0);
 	//omp_set_num_threads(5);
-	#pragma omp for
+	//#pragma omp parallel for
 	for (int k = 1; k < N + 1; k++) {
-	//	printf("Phase %d\n\n", k);
-	//	toStringInch(L, 'L');
-	//	toStringInch(U, 'U');
+		printf("Phase %d\n\n", k);
+		toStringInch(L, 'L');
+		toStringInch(U, 'U');
 		double sum = 0;
+		#pragma omp parallel for
 		for (int p = 0; p < k - 1; p++) {
 			sum += L[k - 1][p] * U[p][k - 1];
 		}
 		L[k - 1][k - 1] = sqrt(A[k - 1][k - 1] - sum);
 		U[k-1][k-1]= L[k-1][k-1];
+		#pragma omp parallel for
 		for (int i = k + 1; i < N + 1; i++) {
 			sum = 0;
 			for (int p = 0; p < k - 1; p++) {
@@ -87,6 +89,7 @@ void factorizacionLUch(vector<vector<double> >& A, vector<vector<double> >& L, v
 				L[i - 1][k - 1] = (A[i - 1][k - 1] - sum) / L[k - 1][k - 1];
 			}
 		}
+		#pragma omp parallel for
 		for (int j = k + 1; j < N + 1; j++) {
 			sum = 0;
 			for (int p = 0; p < k - 1; p++) {
@@ -106,9 +109,11 @@ void factorizacionLUch(vector<vector<double> >& A, vector<vector<double> >& L, v
 vector<double> sustitucionForwardch(vector<vector<double> > &L, vector<double> &b) {
 	int N = L.size();
 	std::vector<double> x(N, 0.0);
+	//#pragma omp parallel for
 	for (int i = 1; i < N + 1; i++)
 	{
 		double sum = 0;
+		#pragma omp parallel for
 		for (int p = i - 1; p > 0; p--)
 		{
 			sum += (L[i - 1][p - 1] * x[p - 1]);
@@ -131,6 +136,7 @@ vector<double> sustitucionBackwardch(vector<vector<double> > &U, vector<double> 
 	vector<double> x(N, 0.0);
 	for (int i = N - 1; i >= 0; i--) {
 		double sum = 0;
+		#pragma omp parallel for
 		for (int j = i + 1; j < N; j++) {
 			sum += U[i][j] * x[j];
 		}
@@ -154,16 +160,16 @@ vector <double> metodoCholesky(vector<vector<double> > &A, vector<double> &b) {
 	vector<vector<double> > U(N, vector<double>(N, 0.0));
 	inicializarch(L, U);
 	factorizacionLUch(A, L, U, N);
-//	printf("Final L matrix\n");
-//	toStringMatrixCRch(L);
-//	printf("Final U matrix\n");
-//	toStringMatrixCRch(U);
+	printf("Final L matrix\n");
+	toStringMatrixCRch(L);
+	printf("Final U matrix\n");
+	toStringMatrixCRch(U);
 	vector<double> Z = sustitucionForwardch(L, b);
-//	printf("z vector\n");
-//	for (double e : Z) {
-//		printf("%f ", e);
-//	}
-//	printf("\n\n");
+	printf("z vector\n");
+	for (double e : Z) {
+		printf("%f ", e);
+	}
+	printf("\n\n");
 	results = sustitucionBackwardch(U, Z);
 	L.clear();
 	L.shrink_to_fit();

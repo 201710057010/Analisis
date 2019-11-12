@@ -5,6 +5,7 @@
 #include <math.h>
 #include "doolittle.h"
 #include <stdio.h>
+#include <omp.h>
 
 using namespace std;
 
@@ -51,10 +52,12 @@ void factorizacionLUdo(vector<vector<double> >& A, vector<vector<double> >& L, v
     toStringIndo(L, 'L');
     toStringIndo(U, 'U');
     double sum = 0;
+    #pragma omp parallel for
     for (int p = 0; p < k - 1; p++) {
       sum += L[k - 1][p] * U[p][k - 1];
     }
     U[k - 1][k - 1] =A[k - 1][k - 1] - sum;
+    #pragma omp parallel for
     for (int i = k + 1; i < N + 1; i++) {
       sum = 0;
       for (int p = 0; p < k - 1; p++) {
@@ -68,6 +71,7 @@ void factorizacionLUdo(vector<vector<double> >& A, vector<vector<double> >& L, v
         L[i - 1][k - 1] = (A[i - 1][k - 1] - sum) / U[k - 1][k - 1];
       }
     }
+    #pragma omp parallel for
     for (int j = k + 1; j < N + 1; j++) {
       sum = 0;
       for (int p = 0; p < k - 1; p++) {
@@ -89,6 +93,7 @@ vector<double> sustitucionForwarddo(vector<vector<double> > &L, vector<double> &
   vector<double> x(N, 0.0);
   for (int i = 1; i < N + 1; i++){
     double sum = 0;
+    #pragma omp parallel for
     for (int p = i - 1; p > 0; p--){
       sum += (L[i - 1][p - 1] * x[p - 1]);
     }
@@ -107,7 +112,8 @@ vector<double> sustitucionBackwarddo(vector<vector<double> > &U, vector<double> 
   int N = U.size();
   vector<double> x(N, 0.0);
   for (int i = N - 1; i >= 0; i--) {
-    double sum = 0;
+    double sum = 0;    
+    #pragma omp parallel for
     for (int j = i + 1; j < N; j++) {
       sum += U[i][j] * x[j];
     }

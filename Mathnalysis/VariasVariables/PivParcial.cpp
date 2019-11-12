@@ -4,6 +4,7 @@
 #include <cfloat>
 #include <stdio.h>
 #include "PivParcial.h"
+#include <omp.h>
 
 using namespace std;
 
@@ -66,6 +67,7 @@ vector<double> sustitucionBackwardPiv(vector<vector<double> > Ab, int n) {
     x[n]= (Ab[n-1][n]/Ab[n-1][n-1]);
     for (int i = n - 1; i >= 0; i--) {
 	  double sum = 0;
+    #pragma omp parallel for
 	  for (int j = i + 1; j < n; j++) {
 	    sum = sum+(Ab[i][j]*x[j]);
 	  }
@@ -85,6 +87,7 @@ vector<vector<double> > EliminacionGaussPivoteo(vector<vector<double> > &Ab,int 
     cout<< "ETAPA " << k+1 << endl;
     Ab = pivParcial(Ab,n,k);
     double multiplicador=0;
+    #pragma omp parallel for
     for(int i=k+1; i<n; i++){
       multiplicador = (Ab[i][k]/Ab[k][k]);
       //cout << multiplicador << endl;
