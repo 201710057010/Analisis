@@ -18,14 +18,14 @@ void toStringInPiv(vector<vector<double> > &matrix) {
 	printf("\n");
 }
 
-vector<vector<double>> swapRows(vector<vector<double>> Ab, int filaMayor, int k){
+vector<vector<double> > swapRows(vector<vector<double> > Ab, int filaMayor, int k){
   vector<double> aux = Ab[k];  
     Ab[k]=Ab[filaMayor];
     Ab[filaMayor]=aux;
     return Ab;
 }
 
-vector<vector <double> > pivParcial (vector<vector<double>> &Ab, int n, int k){
+vector<vector <double> > pivParcial (vector<vector<double> > &Ab, int n, int k){
   double mayor = abs(Ab[k][k]);
   double filaMayor=0;
   for(int s=k+1;s<n; s++){
@@ -79,7 +79,7 @@ vector<double> sustitucionBackwardPiv(vector<vector<double> > Ab, int n) {
 	return x;
 }
 
-vector<vector<double>> EliminacionGaussPivoteo(vector<vector<double> > &Ab,int n){
+vector<vector<double> > EliminacionGaussPivoteo(vector<vector<double> > &Ab,int n){
   for(int k =0; k<n-1; k++){
     cout<< "ETAPA " << k+1 << endl;
     Ab = pivParcial(Ab,n,k);
@@ -96,7 +96,7 @@ vector<vector<double>> EliminacionGaussPivoteo(vector<vector<double> > &Ab,int n
   return Ab;
 }
 
-vector <double> EliminacionGauss(vector<vector<double>> &A, vector<double> b, int n){
+vector <double> EliminacionGauss(vector<vector<double> > &A, vector<double> b, int n){
   vector<double> x(n, 0.0);
   vector<vector<double> > Ab(n, vector<double>(n+1, 0.0));
   Ab = formaMatrizAumentadapiv(A,b,n);

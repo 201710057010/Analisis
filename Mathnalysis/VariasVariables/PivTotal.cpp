@@ -7,7 +7,7 @@
 using namespace std;
 vector<int> marcas;
 
-vector<vector<double>> swapRowsPivT(vector<vector<double>> Ab, int filaMayor, int k){
+vector<vector<double> > swapRowsPivT(vector<vector<double> > Ab, int filaMayor, int k){
   vector<double> aux = Ab[k];
   Ab[k]=Ab[filaMayor];
   Ab[filaMayor]=aux;
@@ -24,7 +24,7 @@ void toStringInPivT(vector<vector<double> > &matrix) {
 	printf("\n");
 }
 
-vector<vector<double>> swapColPivT(vector<vector<double>> Ab, int colMayor, int k){
+vector<vector<double> > swapColPivT(vector<vector<double> > Ab, int colMayor, int k){
   int n=Ab.size();
   for(int i=0;i<n;i++){
     double l=0;
@@ -35,7 +35,7 @@ vector<vector<double>> swapColPivT(vector<vector<double>> Ab, int colMayor, int 
   return Ab;
 }
 
-vector<vector <double> > pivTotal (vector<vector<double>> &Ab, int n, int k){
+vector<vector <double> > pivTotal (vector<vector<double> > &Ab, int n, int k){
   double mayor = 0;
   double filaMayor = k;
   double columnaMayor=k;
@@ -80,7 +80,7 @@ vector<vector<double> > formaMatrizAumentadaPivT(vector<vector<double> > a, vect
 
 
 
-vector<vector<double>> EliminacionGaussPivT(vector<vector<double> > &Ab,int n){
+vector<vector<double> > EliminacionGaussPivT(vector<vector<double> > &Ab,int n){
   vector<int> m(n);
   marcas =m;
   for (int i=0;i<n;i++){
@@ -124,7 +124,7 @@ vector<double> sustitucionBackwardPivt(vector<vector<double> > Ab, int n) {
 	return x;
 }
 
-vector <double> EliminacionGaussPivT(vector<vector<double>> &A, vector<double> b, int n){
+vector <double> EliminacionGaussPivT(vector<vector<double> > &A, vector<double> b, int n){
   vector<double> x(n, 0.0);
   vector<vector<double> > Ab(n, vector<double>(n+1, 0.0));
   Ab = formaMatrizAumentadaPivT(A,b,n);

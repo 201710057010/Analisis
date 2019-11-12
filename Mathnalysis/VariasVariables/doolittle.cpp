@@ -131,7 +131,7 @@ void toStringMatrixCRdo(vector<vector<double> > &matrix){
   printf("\n");
 }
 
-vector <double> doolittle(vector<vector <double>> &A, vector<double> &b){
+vector <double> doolittle(vector<vector <double> > &A, vector<double> &b){
   int n = A.size();
   vector <double> x;
   vector<vector<double> > L(n, vector<double>(n, 0.0));

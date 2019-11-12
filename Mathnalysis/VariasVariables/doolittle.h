@@ -13,4 +13,4 @@ void factorizacionLUdo(vector<vector<double> >& A, vector<vector<double> >& L, v
 vector<double> sustitucionForwarddo(vector<vector<double> > &L, vector<double> &b);
 vector<double> sustitucionBackwarddo(vector<vector<double> > &U, vector<double> &z);
 void toStringMatrixCRdo(vector<vector<double> > &matrix);
-vector <double> doolittle(vector<vector <double>> &A, vector<double> &b);
+vector <double> doolittle(vector<vector <double> > &A, vector<double> &b);
