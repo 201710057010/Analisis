@@ -2,6 +2,7 @@
 #include<cmath>
 #include<iomanip>
 #include<cfloat>
+#include <stdio.h>
 #include<vector>
 #include "jacobi.h"
 

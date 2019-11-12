@@ -4,6 +4,7 @@
 #include<cfloat>
 #include<vector>
 #include "EGS.h"
+#include <stdio.h>
 
 using namespace std;
 

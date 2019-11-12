@@ -1,6 +1,7 @@
 #include <omp.h>
 #include "crout.h"
 #include <cfloat>
+#include <stdio.h>
 
 //#include "exceptions.h"
 #include <iostream>

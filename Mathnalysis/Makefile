@@ -1,7 +1,7 @@
 all: Mathnalysis
 
 Mathnalysis: Mathnalysis.o EcuacionesUnaVariable/PuntoFijo.o EcuacionesUnaVariable/raices_multiples.o EcuacionesUnaVariable/biseccion.o EcuacionesUnaVariable/busqueda_incrementa.o EcuacionesUnaVariable/newton.o EcuacionesUnaVariable/reglaFalsa.o EcuacionesUnaVariable/secante.o VariasVariables/gaussSeidel.o VariasVariables/crout.o VariasVariables/doolittle.o VariasVariables/EGS.o VariasVariables/jacobi.o VariasVariables/PivParcial.o VariasVariables/PivTotal.o  VariasVariables/Cholesky.o analizador/analizer.o analizador/scanner.o analizador/token.o analizador/ast.o analizador/parser.o analizador/calculator.o 
-			g++ -o $@ $^ -fopenmp
+			g++ -std=c++11 -o $@ $^ -fopenmp
 
 Mathnalysis.o: Mathnalysis.cpp Mathnalysis.h exceptions.h EcuacionesUnaVariable/PuntoFijo.h EcuacionesUnaVariable/raices_multiples.h EcuacionesUnaVariable/biseccion.h EcuacionesUnaVariable/busqueda_incrementa.h EcuacionesUnaVariable/newton.h EcuacionesUnaVariable/reglaFalsa.h EcuacionesUnaVariable/secante.h VariasVariables/gaussSeidel.h VariasVariables/crout.h
 

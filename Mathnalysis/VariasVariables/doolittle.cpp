@@ -4,6 +4,7 @@
 #include <cfloat>
 #include <math.h>
 #include "doolittle.h"
+#include <stdio.h>
 
 using namespace std;
 

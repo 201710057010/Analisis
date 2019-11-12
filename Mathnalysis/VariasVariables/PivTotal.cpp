@@ -3,6 +3,7 @@
 #include <vector>
 #include <cfloat>
 #include "PivTotal.h"
+#include <stdio.h>
 
 using namespace std;
 vector<int> marcas;

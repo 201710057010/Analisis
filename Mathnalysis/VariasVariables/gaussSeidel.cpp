@@ -1,5 +1,6 @@
 #include "gaussSeidel.h"
 #include <iostream>
+#include <stdio.h>
 
 
 vector<double> metodoGaussSeidel(vector<double> &variables, vector<vector<double> > &matriz, vector<double> &indepterms) {

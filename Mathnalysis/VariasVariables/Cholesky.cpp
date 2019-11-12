@@ -3,6 +3,7 @@
 #include <vector>
 #include <cmath>
 #include <cfloat>
+#include <stdio.h>
 #include <omp.h>
 
 using namespace std;
