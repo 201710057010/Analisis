@@ -3,7 +3,7 @@
 #include <cmath>
 #include <iostream>
 #include <cstring>
-#include "../exceptions.h"
+//#include "../exceptions.h"
 
 using namespace std;
 
@@ -34,7 +34,7 @@ double puntoFijo(double (*func)(double), double(*gFunc)(double), double xa, int 
 			return xa;
 		}
 		else {
-			throw TooMuchIterException();
+//			throw TooMuchIterException();
 		}
 	}
 }

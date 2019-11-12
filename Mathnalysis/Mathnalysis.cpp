@@ -3,7 +3,7 @@
 
 
 #include "Mathnalysis.h"
-#include "exceptions.h"
+//#include "exceptions.h"
 #include "EcuacionesUnaVariable/PuntoFijo.h"
 #include "EcuacionesUnaVariable/raices_multiples.h"
 #include "EcuacionesUnaVariable/biseccion.h"

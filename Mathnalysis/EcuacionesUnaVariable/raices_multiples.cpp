@@ -5,7 +5,7 @@
 #include<iomanip>
 #include <cstring>
 #include "raices_multiples.h"
-#include "../exceptions.h"
+//#include "../exceptions.h"
 
 using namespace std;
 
@@ -48,9 +48,9 @@ double raicesMultiples(double (*func)(double), double(*dfunc)(double), double(*d
 		return x1;
 	}
 	else if (x2 == 0) {
-		throw div0Exception();
+//		throw div0Exception();
 	}
 	else {
-		throw TooMuchIterException();
+//		throw TooMuchIterException();
 	}
 }

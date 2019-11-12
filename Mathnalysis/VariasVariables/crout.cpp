@@ -2,7 +2,7 @@
 #include "crout.h"
 #include <cfloat>
 
-#include "exceptions.h"
+//#include "exceptions.h"
 #include <iostream>
 
 vector <double> metodoCrout(vector<vector<double> > &A, vector<double> &b) {
@@ -28,7 +28,7 @@ vector <double> metodoCrout(vector<vector<double> > &A, vector<double> &b) {
 		Z.clear();
 		Z.shrink_to_fit();
 	}
-	catch (div0Exception& ex) {
+	catch (exception& ex) {
 		throw ex;
 	}
 	L.clear();
@@ -76,7 +76,7 @@ void factorizacionLU(vector<vector<double> >& A, vector<vector<double> >& L, vec
 			}
 			double denominator = U[k - 1][k - 1];
 			if (denominator == 0) {
-				throw div0Exception();
+		//		throw div0Exception();
 			}
 			else {
 				L[i - 1][k - 1] = (A[i - 1][k - 1] - sum) / U[k - 1][k - 1];
@@ -89,7 +89,7 @@ void factorizacionLU(vector<vector<double> >& A, vector<vector<double> >& L, vec
 			}
 			double denominator = L[k - 1][k - 1];
 			if (denominator == 0) {
-				throw div0Exception();
+		//		throw div0Exception();
 			}
 			else {
 				U[k - 1][j - 1] = (A[k - 1][j - 1] - sum) / L[k - 1][k - 1];
@@ -111,7 +111,7 @@ vector<double> sustitucionForward(vector<vector<double> > &L, vector<double> &b)
 		double denominator = L[i - 1][i - 1];
 		if (denominator == 0)
 		{
-			throw div0Exception();
+		//	throw div0Exception();
 		}
 		else
 		{
@@ -131,7 +131,7 @@ vector<double> sustitucionBackward(vector<vector<double> > &U, vector<double> &z
 		}
 		double denominator = U[i][i];
 		if (denominator == 0) {
-			throw div0Exception();
+		//	throw div0Exception();
 		}
 		else {
 			x[i] = (z[i] - sum) / U[i][i];
