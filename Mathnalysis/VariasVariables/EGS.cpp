@@ -11,14 +11,13 @@ vector<vector <double> > formaMatrizAumentada (vector <vector<double> > a, vecto
     vector<vector<double> > aumentada(n, vector<double>(n+1, 0.0));
 
     for(int i=0; i<n; i++){
-        for(int j=0; j<n; j++){
-            aumentada[i][j] = a[i][j];
-        }
+      for(int j=0; j<n; j++){
+        aumentada[i][j] = a[i][j];
+      }
     }
     for(int i=0; i<n; i++){
-        aumentada[i][n] = b[i];
+      aumentada[i][n] = b[i];
     }
-
     return aumentada;
 }
 
@@ -39,16 +38,15 @@ vector<vector<double> > gausianaSimple (vector<vector<double> > &a, vector<doubl
     for(int k=0; k<n-1; k++){
       cout << "ETAPA "<< k+1 << endl;
       double multiplicador=0;
-        for(int i=k+1; i<n; i++){
-	  multiplicador = (ab[i][k]/ab[k][k]);
-	  //cout << multiplicador << endl;
-            for(int j=k; j<n+1; j++){
-	      ab[i][j] = (ab[i][j] - (multiplicador * ab[k][j]));
-            }
+      for(int i=k+1; i<n; i++){
+        multiplicador = (ab[i][k]/ab[k][k]);
+	      //cout << multiplicador << endl;
+        for(int j=k; j<n+1; j++){
+          ab[i][j] = (ab[i][j] - (multiplicador * ab[k][j]));
         }
-        toStringInEg(ab);
+      }
+      toStringInEg(ab);
     }
-
     return ab;
 }
 

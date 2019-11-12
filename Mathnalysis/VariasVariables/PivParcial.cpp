@@ -38,8 +38,8 @@ vector<vector <double> > pivParcial (vector<vector<double>> &Ab, int n, int k){
       cout << "El sistema no tiene solución unica" << endl;
     } else {
       if(filaMayor != k){
-	cout << "Filas " << k << " y " << filaMayor << " cambiadas" << endl;
-	Ab=swapRows(Ab,filaMayor,k);
+        cout << "Filas " << k << " y " << filaMayor << " cambiadas" << endl;
+        Ab=swapRows(Ab,filaMayor,k);
       }
     }    
   } 
@@ -50,22 +50,20 @@ vector<vector <double> > pivParcial (vector<vector<double>> &Ab, int n, int k){
 vector<vector<double> > formaMatrizAumentadapiv(vector<vector<double> > a, vector<double> b, int n){
     vector<vector<double> > aumentada(n, vector<double>(n+1, 0.0));
     for(int i=0; i<n; i++){
-        for(int j=0; j<n; j++){
-            aumentada[i][j] = a[i][j];
-        }
+      for(int j=0; j<n; j++){
+        aumentada[i][j] = a[i][j];
+      }
     }
     for(int i=0; i<n; i++){
-        aumentada[i][n] = b[i];
+      aumentada[i][n] = b[i];
     }
-
     return aumentada;
-    
 }
 
 vector<double> sustitucionBackwardPiv(vector<vector<double> > Ab, int n) {
     vector<double> x(n, 0.0);
     x[n]= (Ab[n-1][n]/Ab[n-1][n-1]);
-	for (int i = n - 1; i >= 0; i--) {
+    for (int i = n - 1; i >= 0; i--) {
 	  double sum = 0;
 	  for (int j = i + 1; j < n; j++) {
 	    sum = sum+(Ab[i][j]*x[j]);
@@ -90,13 +88,11 @@ vector<vector<double>> EliminacionGaussPivoteo(vector<vector<double> > &Ab,int n
       multiplicador = (Ab[i][k]/Ab[k][k]);
       //cout << multiplicador << endl;
       for(int j=k; j<n+1; j++){
-	Ab[i][j]=(Ab[i][j]-(multiplicador*Ab[k][j]));
-	
+        Ab[i][j]=(Ab[i][j]-(multiplicador*Ab[k][j]));
       }
     }
    toStringInPiv(Ab);
   }
-  
   return Ab;
 }
 

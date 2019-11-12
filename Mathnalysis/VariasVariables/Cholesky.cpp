@@ -3,6 +3,7 @@
 #include <vector>
 #include <cmath>
 #include <cfloat>
+#include <omp.h>
 
 using namespace std;
 
@@ -59,10 +60,13 @@ void inicializarch(vector<vector<double> >& L, vector<vector<double> >& U) {
 }
 
 void factorizacionLUch(vector<vector<double> >& A, vector<vector<double> >& L, vector<vector<double> >& U, int N) {
+	//omp_set_dynamic(0);
+	//omp_set_num_threads(5);
+	#pragma omp for
 	for (int k = 1; k < N + 1; k++) {
-		printf("Phase %d\n\n", k);
-		toStringInch(L, 'L');
-		toStringInch(U, 'U');
+	//	printf("Phase %d\n\n", k);
+	//	toStringInch(L, 'L');
+	//	toStringInch(U, 'U');
 		double sum = 0;
 		for (int p = 0; p < k - 1; p++) {
 			sum += L[k - 1][p] * U[p][k - 1];
@@ -142,27 +146,30 @@ vector<double> sustitucionBackwardch(vector<vector<double> > &U, vector<double> 
 
 
 
-vector <double> metodoCholesky(vector<vector<double> > A, vector<double> b) {
+vector <double> metodoCholesky(vector<vector<double> > &A, vector<double> &b) {
 	int N = A.size();
 	vector<double> results;
 	vector<vector<double> > L(N, vector<double>(N, 0.0));
 	vector<vector<double> > U(N, vector<double>(N, 0.0));
 	inicializarch(L, U);
-
-	
-		factorizacionLUch(A, L, U, N);
-		printf("Final L matrix\n");
-		toStringMatrixCRch(L);
-		printf("Final U matrix\n");
-		toStringMatrixCRch(U);
-		vector<double> Z = sustitucionForwardch(L, b);
-		printf("z vector\n");
-		for (double e : Z) {
-			printf("%f ", e);
-		}
-		printf("\n\n");
-		results = sustitucionBackwardch(U, Z);
-	
+	factorizacionLUch(A, L, U, N);
+//	printf("Final L matrix\n");
+//	toStringMatrixCRch(L);
+//	printf("Final U matrix\n");
+//	toStringMatrixCRch(U);
+	vector<double> Z = sustitucionForwardch(L, b);
+//	printf("z vector\n");
+//	for (double e : Z) {
+//		printf("%f ", e);
+//	}
+//	printf("\n\n");
+	results = sustitucionBackwardch(U, Z);
+	L.clear();
+	L.shrink_to_fit();
+	U.clear();
+	U.shrink_to_fit();
+	Z.clear();
+	Z.shrink_to_fit();
 	return results;
 }
 

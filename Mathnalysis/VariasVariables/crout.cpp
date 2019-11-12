@@ -5,7 +5,7 @@
 #include "exceptions.h"
 #include <iostream>
 
-vector <double> metodoCrout(vector<vector<double> > A, vector<double> b) {
+vector <double> metodoCrout(vector<vector<double> > &A, vector<double> &b) {
 	int N = A.size();
 	vector<double> results;
 	vector<vector<double> > L(N, vector<double>(N, 0.0));
@@ -25,10 +25,16 @@ vector <double> metodoCrout(vector<vector<double> > A, vector<double> b) {
 		}
 		printf("\n\n");
 		results = sustitucionBackward(U, Z);
+		Z.clear();
+		Z.shrink_to_fit();
 	}
 	catch (div0Exception& ex) {
 		throw ex;
 	}
+	L.clear();
+	L.shrink_to_fit();
+	U.clear();
+	U.shrink_to_fit();
 	return results;
 }
 
