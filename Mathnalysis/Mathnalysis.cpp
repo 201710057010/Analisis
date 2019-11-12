@@ -35,7 +35,7 @@ vector<double> x;
 vector<vector<double> > A;
 vector<double> b;
 vector<double> c;
-vector<vector<double>> ab;
+vector<vector<double> > ab;
 string funcionf,funciong,funcionf2;
 
 using namespace std;

@@ -5,7 +5,7 @@
 */
 
 struct TooMuchIterException : public std::exception {
-	const char* what() const noexcept {
+	const char* what() const noexcept override {
 		return "No se pudo Encontrar la raiz con la cantidad de iteraciones pedido";
 	}
 };
@@ -16,7 +16,7 @@ struct TooMuchIterException : public std::exception {
 
 struct BadIntervalException : public std::exception {
 
-	const char* what() const noexcept {
+	const char* what() const noexcept  override{
 		return "Intervalo invalido, por favor inserte otro";
 	}
 };
@@ -27,7 +27,7 @@ struct BadIntervalException : public std::exception {
 
 struct Derived0Exception : public std::exception {
 
-	const char* what() const noexcept {
+	const char* what() const noexcept override {
 		return "Derivada igual a 0";
 	}
 };
@@ -38,7 +38,7 @@ struct Derived0Exception : public std::exception {
 
 struct div0Exception : public std::exception {
 
-	const char* what() const noexcept {
+	const char* what() const noexcept override{
 		return "Se intento divir por 0";
 	}
 };
