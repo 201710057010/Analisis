@@ -17,6 +17,7 @@ double puntoFijo(double (*func)(double), double(*gFunc)(double), double xa, int 
 	cout << " | " << "iter" << "  |  " << "Xn" << "  |  " << "f(Xn)" << "  |  " << "Error" << "  |" << endl;
 	if (fx == 0) {
 		return fx;
+		cout << "primer if" << endl;
 	}
 	else {
 		while (fx != 0 && error > tol && count < nIter) {
@@ -34,6 +35,7 @@ double puntoFijo(double (*func)(double), double(*gFunc)(double), double xa, int 
 			return xa;
 		}
 		else {
+			cout << "dafuq" << endl;
 //			throw TooMuchIterException();
 		}
 	}

@@ -119,3 +119,9 @@ class TanNode : UnaryNode{
      TanNode(AST* sub);
      double evaluate();
 };
+
+class NegNode: public UnaryNode{
+  public:
+    NegNode(AST* sub);
+    double evaluate();
+};

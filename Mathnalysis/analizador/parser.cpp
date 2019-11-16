@@ -130,7 +130,7 @@ AST* Parser::factor() {
    }
 
    if(t->getType() == expo){
-      return specialTerm(new ExpoNode(expr()));
+      return specialTerm(new ExpoNode(factor()));
    }
 
   if (t->getType() == var) {
@@ -145,6 +145,10 @@ AST* Parser::factor() {
       throw ParseError;
     }
     return result;
+  }
+
+  if(t->getType() == sub){
+     return new NegNode(factor());
   }
 
   cout << "Expected Number, x, '('" << endl;

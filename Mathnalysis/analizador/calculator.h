@@ -9,10 +9,10 @@ class Calculator {
     public:
        Calculator();
        double eval(string expr);
-       void store(int val);
-       int recall();
+       void store(double val);
+       double recall();
     private:
-       int memory;
+       double memory;
 };
 
 extern Calculator* calc;

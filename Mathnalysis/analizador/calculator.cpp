@@ -26,11 +26,11 @@ double Calculator::eval(string expr) {
    return result;
 }
 
-void Calculator::store(int val) {
+void Calculator::store(double val) {
    memory = val;
 }
 
 
-int Calculator::recall() {
+double Calculator::recall() {
    return memory;
 }

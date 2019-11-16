@@ -57,7 +57,7 @@ using namespace std;
 		//metodoGaussSeidel(c,A,b);
 
 void leerxa(){
-	cin >> a;
+	cin >> xa;
 }
 
 void leertol(){
@@ -235,6 +235,7 @@ int main()
 		int temporal;
 		double v;
 		double respuesta;
+		double z;
 		while(a != 0){
 			cin >> a;
 			switch (a)
@@ -298,10 +299,10 @@ int main()
 					busqueda_incremental(f,xa, delta, nIter);
 					break;
 				case 15:
-					newton(f,g,xa,tol,nIter);
+					newton(f,f2,xa,tol,nIter);
 					break;
 				case 16:
-					puntoFijo(f,g,xa,tol,nIter,errorType);
+					puntoFijo(f,g,xa,nIter,tol,errorType);
 					break;
 				case 17:
 		 			raicesMultiples(f,g,f2,xa,nIter,tol,errorType);
@@ -409,10 +410,13 @@ void toStringMatrixCRMa(vector<vector<double> > &matrix)
 }
 
 double f(double x) {
+	//return exp(3*x-12)+x*cos(3*x) - pow(x,2) + 4;
+	//return x*exp(x) - pow(x,2)- 5*x - 3;
 	return analizar(funcionf,x);
 }
 
 double g(double x) {
+    //return (x*exp(x) - pow(x,2) - 3) / 5;
 	return analizar(funciong,x);
 }
 

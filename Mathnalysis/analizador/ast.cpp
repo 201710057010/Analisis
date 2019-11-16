@@ -106,7 +106,7 @@ SenNode::SenNode(AST* sub):
 {}
 
 double SenNode::evaluate(){
-    return sin((getSubTree()->evaluate()*3.14159265 / 180));
+    return sin(getSubTree()->evaluate());
 }
 
 CosNode::CosNode(AST* sub):
@@ -114,7 +114,7 @@ CosNode::CosNode(AST* sub):
 {}
 
 double CosNode::evaluate(){
-    return cos((getSubTree()->evaluate()*3.14159265 / 180));
+    return cos(getSubTree()->evaluate());
 }
 
 PotNode::PotNode(AST* left, AST* right):
@@ -146,5 +146,13 @@ TanNode::TanNode(AST* sub):
 {}
 
 double TanNode::evaluate(){
-    return tan((getSubTree()->evaluate()*3.14159265 / 180));
+    return tan(getSubTree()->evaluate());
+}
+
+NegNode::NegNode(AST* sub):
+   UnaryNode(sub)
+{}
+
+double NegNode::evaluate(){
+   return (getSubTree()->evaluate())*-1;
 }

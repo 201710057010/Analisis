@@ -4,4 +4,4 @@
 #include <string>
 using namespace std;
 
-double analizar(string line, int x);
+double analizar(string line, double x);

@@ -8,7 +8,7 @@ using namespace std;
 
 Calculator* calc;
 
-double analizar(string line, int x){
+double analizar(string line, double x){
     try {
         calc = new Calculator();
         // line + '\n';
