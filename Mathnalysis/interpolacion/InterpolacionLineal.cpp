@@ -4,7 +4,7 @@
 using namespace std;
 
 double mientras;
-double interpolate( vector<double> &xData, vector<double> &yData,  bool extrapolate )
+double interpolate( vector<double> &xData, vector<double> &yData )
 {
  
   cout << "X     F(X) \n";
@@ -30,10 +30,10 @@ double interpolate( vector<double> &xData, vector<double> &yData,  bool extrapol
       while ( x > xData[i+1] ) i++;
    }
    double xL = xData[i], yL = yData[i], xR = xData[i+1], yR = yData[i+1];      
-   if ( !extrapolate ){                                                         
+                                                            
       if(x < xL ) yR = yL;
       if ( x > xR ) yL = yR;
-   }
+   
 
    double dydx = ( yR - yL ) / ( xR - xL ); //gradiente
                                
@@ -61,14 +61,14 @@ double interpolate( vector<double> &xData, vector<double> &yData,  bool extrapol
 }
 //======================================================================
 
-int main()
+/*int main()
 {
   vector<double> xData = { 1, 3, 4, 5, 7  };
   vector<double> yData = { 4.31, 1.5, 3.2, 2.6, 1.8  };
 
 
-      double y = interpolate( xData, yData, true );
+      double y = interpolate( xData, yData);
       
-   }
+      }*/
 
   
