@@ -12,14 +12,12 @@ vector<double> metodoGaussSeidel(vector<double> &variables, vector<vector<double
 	//#pragma omp parallel for
 	for (int i = 0; i < N; i++) {
 		sum = 0;
-		#pragma omp parallel for
 		for (int j = 0; j < N; j++) {
 			if (j != i) {
 				sum = sum + (matriz[i][j] * results[j]);
 			}
 		}
-		results[i] = (indepterms[i] - sum) / matriz[i][i];
-		//cout << results[i] << endl;
+		results[i] = ((indepterms[i] - sum) / matriz[i][i]);
 	}
 	return results;
 }
@@ -28,21 +26,20 @@ vector<double> solveGaussSeidel(vector<vector<double>> &A, vector<double> &b, ve
 	int count;
 	double dispersion;
 	vector<double> x0(initValues),x1,ultimox1;
-
 	count = 0;
 	dispersion = tol +1;
 
 	while(dispersion > tol && count < nIter){
 		if(count != 0){
 			ultimox1 = x1;
+		}else{
+			ultimox1 = initValues;
 		}
 		x1 = metodoGaussSeidel(x0,A,b);
-		if(count != 0){
-			for(unsigned int i = 0; i < x1.size(); i++){
-				x1[i] = lamda * x1[i] + (1-lamda) * ultimox1[i];
-			}
+		for(unsigned int i = 0; i < x1.size(); i++){
+			x1[i] = lamda * x1[i] + (1-lamda) * ultimox1[i];
 		}
-		dispersion = absNorm(x1,x0);
+		dispersion = relNorm(x1,x0);
 		x0 = x1;
 		count ++;
 		cout << "Iteración " << count << endl;
@@ -54,7 +51,7 @@ vector<double> solveGaussSeidel(vector<vector<double>> &A, vector<double> &b, ve
 	if(dispersion < tol){
 		return x1;
 	}else{
-		cout << "el metodo super las iteraciones" << endl;  
+		cout << "el metodo supero las iteraciones" << endl;  
 	}
 }
 
@@ -64,4 +61,15 @@ double absNorm(vector<double> &x1, vector<double> &x0){
 		sum += pow(fabs(x1[i] - x0[i]), 2);
 	}
 	return sqrt(sum);
+}
+
+double relNorm(std::vector<double> &x1, std::vector<double> &x0) {
+    double numeratorSum = 0;
+    double denominatorSum = 0;
+    for (long unsigned int i = 0; i < x1.size(); i++) {
+        numeratorSum += pow(fabs(x1[i] - x0[i]), 2);
+        denominatorSum += pow(x1[i], 2);
+    }
+
+    return sqrt(numeratorSum)/sqrt(denominatorSum);
 }
