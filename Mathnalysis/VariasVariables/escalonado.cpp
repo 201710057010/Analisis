@@ -1,37 +1,64 @@
 #include <iostream>
 #include <cmath>
 #include <iomanip>
+#include <vector>
+#include<stdlib.h>
  
 using namespace std;
  
-void leerDatos( double **M, int fil, int col, double B[] );
-void gaussEliminacion( double **M, int fil, int col, double v[] );
-void intercambiarFilas( double **M, int col, int k, int max );
-void imprimirMatriz( double **M, int fil, int col, double v[] );
-void imprimirSolucion( double v[], int fil );
- 
+//void leerDatos(vector < vector<double> > A, int fil, int col, vector<double> b);
+void gaussEliminacion(vector < vector<double> > A, int fil, int col, vector<double> b);
+void intercambiarFilas(vector < vector<double> > A, int col, int k, int max );
+void imprimirMatriz(vector < vector<double> > A, int fil, int col, vector<double> b);
+void imprimirSolucion(vector<double>v, int fil);
+
 int main()
-{
-    int fil, col;
- 
-    cout << "\nNumero de variables: ";
-    cin >> fil;
-    col = fil;
- 
-    double** A = new double*[fil];
-    for( int i = 0; i < fil; i++ )
-        A[i] = new double[col];
- 
-    double B[fil];
- 
-    leerDatos( A, fil, col, B );
-    imprimirMatriz( A, fil, col, B );
-    gaussEliminacion( A, fil, col, B );
- 
-    return 0;
+{//vector<vector<double>
+	int fil, col;
+
+	cout << "\nNumero de variables: ";
+	cin >> fil;
+	col = fil;
+	vector < vector<double> > A(fil, vector<double>(fil));
+	//for( int i = 0; i < fil; i++ )
+	  //  A[i] = new double[col];
+
+	vector<double> B(fil);
+
+	//leerDatos(A, fil, col, B);
+	/*for (int i = 0; i < fil; i++) {
+		
+		for (int j = 0; j < col; j++) {
+			
+			A[i][j]= abs((double)rand() / RAND_MAX);
+		}
+	}
+	for (int i = 0; i < fil; i++) {
+		
+		 B[i]= abs((double)rand() / RAND_MAX);
+	}*/
+	A[0][0] = 1;
+		A[0][1] = -1;
+		A[0][2] = -2;
+		A[1][1] = 1;
+		A[1][0] = 2;
+		A[1][2] = -3;
+		A[2][0] = 1;
+		A[2][1] = 2;
+		A[2][2] = 3;
+
+		B[0] = 8;
+		B[1] = 11;
+		B[2] = 5;
+
+	imprimirMatriz(A, fil, col, B);
+	gaussEliminacion(A, fil, col, B);
+
+	return 0;
 }
  
-void leerDatos( double **A, int fil, int col, double B[] )
+
+/*void leerDatos(vector < vector<double> > A, int fil, int col, vector<double> B )
 {
     cout << "\nIntroduzca coeficientes de la ecuacion:\n";
     for( int i = 0; i < fil; i++ ){
@@ -47,15 +74,15 @@ void leerDatos( double **A, int fil, int col, double B[] )
         cin >> B[i];
     }
  
-}
+}*/
  
-void gaussEliminacion( double **A, int fil, int col, double B[] )
+void gaussEliminacion(vector < vector<double> > A, int fil, int col, vector<double> B)
 {
     int max;
     int N = fil;
     double factor, temp;
  
-    for( int k = 0; k < N; k++ ){
+   for( int k = 0; k < N; k++ ){
         max = k;
         for( int i = k + 1; i < N; i++ )
             if( abs( A[i][k] ) > abs( A[max][k] ) )
@@ -76,10 +103,11 @@ void gaussEliminacion( double **A, int fil, int col, double B[] )
         }
     }
     imprimirMatriz( A, fil, col, B );
- 
-    double solucion[fil] = { 0.0 };
+  
+	vector<double> solucion(fil);
+	solucion[fil] = 0.0;
     double suma;
- 
+  
     for (int i = N - 1; i >= 0; i-- ){
  
         suma = 0.0;
@@ -93,7 +121,7 @@ void gaussEliminacion( double **A, int fil, int col, double B[] )
     imprimirSolucion( solucion, fil );
 }
  
-void intercambiarFilas( double **M, int col, int k, int max )
+void intercambiarFilas(vector < vector<double> > M, int col, int k, int max )
 {
     double temp[col];
  
@@ -104,7 +132,7 @@ void intercambiarFilas( double **M, int col, int k, int max )
     }
 }
  
-void imprimirMatriz( double **M, int fil, int col, double v[] )
+void imprimirMatriz(vector < vector<double> > M, int fil, int col, vector<double> v )
 {
     cout << setprecision(3) << fixed;
     cout << "\nMatriz:\n";
@@ -117,7 +145,7 @@ void imprimirMatriz( double **M, int fil, int col, double v[] )
     cout << "\n";
 }
  
-void imprimirSolucion( double v[], int fil )
+void imprimirSolucion( vector<double> v, int fil )
 {
     cout << "\nSolucion: ";
     for( int i = 0; i < fil; i++ )
@@ -125,3 +153,4 @@ void imprimirSolucion( double v[], int fil )
  
     cout << endl;
 }
+
