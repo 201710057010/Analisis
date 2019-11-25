@@ -4,7 +4,7 @@
 using namespace std;
 
 double mientras;
-double interpolate( vector<double> &xData, vector<double> &yData,  bool extrapolate )
+double interpolate( vector<double> &xData, vector<double> &yData )
 {
  
   cout << "X     F(X) \n";
@@ -13,7 +13,7 @@ double interpolate( vector<double> &xData, vector<double> &yData,  bool extrapol
    for ( int i = 1; i <= NPTS; i++ ) xVals.push_back( (double)i );
 
    // Interpolate
-   for ( double x : xVals )
+   for ( double x : xData )
    {
 
   //determino la cantidad de valores de x.
@@ -21,7 +21,7 @@ double interpolate( vector<double> &xData, vector<double> &yData,  bool extrapol
 
    int i = 0;
    //determino extremo superior e inforior
-   if ( x >= xData[size - 2] )                                                 
+   if ( x >= xData[size - 1] )                                                 
    {
       i = size - 2;
    }
@@ -30,10 +30,10 @@ double interpolate( vector<double> &xData, vector<double> &yData,  bool extrapol
       while ( x > xData[i+1] ) i++;
    }
    double xL = xData[i], yL = yData[i], xR = xData[i+1], yR = yData[i+1];      
-   if ( !extrapolate ){                                                         
+                                                            
       if(x < xL ) yR = yL;
       if ( x > xR ) yL = yR;
-   }
+   
 
    double dydx = ( yR - yL ) / ( xR - xL ); //gradiente
                                
@@ -43,18 +43,32 @@ double interpolate( vector<double> &xData, vector<double> &yData,  bool extrapol
      cout << "X";
      cout << "+";
      cout << yL - (dydx*xL) ;
-     cout << '\n';
+     cout << "    " << xData[i] << " <=X<= "<<xData[i+1]<<'\n';
+     
+     
      mientras=dydx;
-   }
+     }
    
-   
+   /*
    cout << x;
    cout << "   ,   ";
    cout << yL+dydx*(x-xL);
     cout<< '\n';
-   
+   */
      x++;                                 
 }
   
 }
 //======================================================================
+
+/*int main()
+{
+  vector<double> xData = { 1, 3, 4, 5, 7  };
+  vector<double> yData = { 4.31, 1.5, 3.2, 2.6, 1.8  };
+
+
+      double y = interpolate( xData, yData);
+      
+      }*/
+
+  
